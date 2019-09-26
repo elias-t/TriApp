@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace TriCalcAngular.Models
+{
+    public partial class RaceDTO
+    {
+        public int RaceId { get; set; }
+        public string Name { get; set; }
+        public int RaceFormatId { get; set; }
+        public int Year { get; set; }
+        public string RaceFormatName { get; set; }
+        public int ResultsCount { get; set; }
+    }
+}

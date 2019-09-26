@@ -1,0 +1,13 @@
+label, input {
+  display: inline-block;
+  width: 200px;
+  text-align: left;
+}
+
+
+a.disabled {
+  color: gray;
+  cursor: not-allowed;
+  text-decoration: none;
+  pointer-events: none;
+}

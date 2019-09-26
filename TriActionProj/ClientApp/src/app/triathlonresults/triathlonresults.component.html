@@ -1,0 +1,43 @@
+<div>
+  <label>Triathon competitions: </label>
+  <select (change)="filterRaces($event.target.value)">
+    <option value="0">--All--</option>
+    <option *ngFor="let format of formats" value={{format.name}}>
+      {{format.name}}
+    </option>
+  </select>
+</div>
+
+<h1>Races</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!races"><em>Loading...</em></p>
+<div *ngIf="races">
+  <table class='table' *ngIf="races">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Format</th>
+        <th>Year</th>
+        <th>Results</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let race of races">
+        <td>{{ race.name }}</td>
+        <td>{{ race.raceFormatName }}</td>
+        <td>{{ race.year }}</td>
+        <td><a [class.disabled]="!isResultsDisabled(race.resultsCount)" [routerLink]="['../viewresults', race.raceId]">View results</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="AddRace()">
+      Add race
+    </button>
+  </p>
+</div>

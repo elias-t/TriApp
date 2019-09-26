@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9b3f490296d044d99a6aaab5a5eb4eb6" Name="Diagram1">
+        <EntityTypeShape EntityType="TriathlonResultsModel.Athlete" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TriathlonResultsModel.Format" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TriathlonResultsModel.Race" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TriathlonResultsModel.Result" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="TriathlonResultsModel.FK_Results_Athletes" ManuallyRouted="false" />
+        <AssociationConnector Association="TriathlonResultsModel.FK_Races_Formats" ManuallyRouted="false" />
+        <AssociationConnector Association="TriathlonResultsModel.FK_Results_Races" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
