@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RaceApiService } from '../services/race-api.service';
-import { TestModalComponent } from '../test-modal/test-modal.component';
 import { Globals } from '../globals';
 
 

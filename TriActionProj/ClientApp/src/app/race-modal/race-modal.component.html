@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Race</h4>
+</div>
+
+<div class="modal-body">
+  <ng-form #raceModal="ngForm">
+    <div class="form-group row">
+      <label for="raceName" class="col-md-4 col-form-label" style="text-align: right">Race name:</label>
+      <div class="input-group col-md-8">
+        <input id="raceName" name="raceName" class="form-control" placeholder="Race name"
+               [(ngModel)]="raceName" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="raceFormat" class="col-md-4 col-form-label" style="text-align: right">Race format:</label>
+      <div class="input-group col-md-8">
+        <select>
+          <option *ngFor="let format of formats" value={{format.name}}>
+            {{format.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="raceFormat" class="col-md-4 col-form-label" style="text-align: right">Race year:</label>
+      <div class="input-group col-md-8">
+        <select>
+          <option value="{{currentYear-3}}">{{currentYear-3}}</option>
+          <option value="{{currentYear-2}}">{{currentYear-2}}</option>
+          <option value="{{currentYear-1}}">{{currentYear-1}}</option>
+          <option value="{{currentYear}}">{{currentYear}}</option>
+          <option value="{{currentYear+1}}">{{currentYear+1}}</option>
+          <option value="{{currentYear+2}}">{{currentYear+2}}</option>
+          <option value="{{currentYear+3}}">{{currentYear+3}}</option>
+        </select>
+      </div>
+    </div>
+
+  </ng-form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="btnClose_Clicked()">Cancel</button>
+  <button type="button" class="btn btn-outline-dark" (click)="btnSave_Clicked()">Save</button>
+</div>

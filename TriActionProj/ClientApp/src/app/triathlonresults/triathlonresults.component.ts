@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RaceApiService } from '../services/race-api.service';
-import { TestModalComponent } from '../test-modal/test-modal.component';
+import { RaceModalComponent } from '../race-modal/race-modal.component';
 import { Globals } from '../globals';
 
 @Component({
@@ -46,8 +46,8 @@ import { Globals } from '../globals';
       return true;
     }
 
-    public AddRace() {
-      const modalRef = this.modal.open(TestModalComponent, { size: 'xl', centered: true });
+  public AddRace() {
+    const modalRef = this.modal.open(RaceModalComponent, { size: 'lg', centered: true });
       modalRef.result.then((result) => {
         console.log(result);
       }).catch((error) => {

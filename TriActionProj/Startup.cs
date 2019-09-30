@@ -34,9 +34,9 @@ namespace TestAngularProj
             });
 
             //HOME
-            var connection = @"Server=DESKTOP-4NUD22C;Database=TriathlonResults;Trusted_Connection=True;ConnectRetryCount=0";
+            //var connection = @"Server=DESKTOP-4NUD22C;Database=TriathlonResults;Trusted_Connection=True;ConnectRetryCount=0";
             //WORK 
-            //var connection = @"Server=SAU019855\SCOTCOURTSDB;Database=TriathlonResults;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=SAU019855\SCOTCOURTSDB;Database=TriathlonResults;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<TriathlonContext>(options => options.UseSqlServer(connection));
 
             //DI - Add repository

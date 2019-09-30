@@ -1,30 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { TestModalComponent } from '../test-modal/test-modal.component';
-
 
 @Component({
   selector: 'app-triathloncalculator',
   templateUrl: './triathloncalculator.component.html',
   styleUrls: ['./triathloncalculator.component.css']
 })
-//export class TriathloncalculatorComponent implements OnInit {
-
-//  constructor(private modal: NgbModal) { }
-
-//  ngOnInit() {
-//  }
-
-//  public AddRace() {
-//    const modalRef = this.modal.open(TestModalComponent, { size: 'sm', centered: true });
-//    modalRef.result.then((result) => {
-//      console.log(result);
-//    }).catch((error) => {
-//      console.log(error);
-//    });
-//  }
-//}
 
 export class TriathloncalculatorComponent {
   public totalTime: number = 0;
