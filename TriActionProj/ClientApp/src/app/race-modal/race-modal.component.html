@@ -7,15 +7,28 @@
     <div class="form-group row">
       <label for="raceName" class="col-md-4 col-form-label" style="text-align: right">Race name:</label>
       <div class="input-group col-md-8">
-        <input id="raceName" name="raceName" class="form-control" placeholder="Race name"
-               [(ngModel)]="raceName" required>
+        <select (change)="checkIfNewRace($event.target.value)" [(ngModel)]="selectedRace.Id">
+          <option value="-1">Select</option>
+          <option value="0">Add new race event</option>
+          <option *ngFor="let race of races" value={{race.name}}>
+            {{race.name}} - {{race.raceFormatName}}
+          </option>
+        </select>
       </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row" *ngIf="isNewRace">
+      <label for="raceName" class="col-md-4 col-form-label" style="text-align: right">Race name:</label>
+      <div class="input-group col-md-8">
+        <input id="raceName" name="raceName" class="form-control" placeholder="Race name"
+          [(ngModel)]="modelRaceName" required>
+      </div>
+    </div>
+
+    <div class="form-group row" *ngIf="isNewRace">
       <label for="raceFormat" class="col-md-4 col-form-label" style="text-align: right">Race format:</label>
       <div class="input-group col-md-8">
-        <select>
+        <select [(ngModel)]="modelRaceFormatId">
           <option *ngFor="let format of formats" value={{format.name}}>
             {{format.name}}
           </option>
@@ -26,7 +39,7 @@
     <div class="form-group row">
       <label for="raceFormat" class="col-md-4 col-form-label" style="text-align: right">Race year:</label>
       <div class="input-group col-md-8">
-        <select>
+        <select [(ngModel)]="modelRaceYear">
           <option value="{{currentYear-3}}">{{currentYear-3}}</option>
           <option value="{{currentYear-2}}">{{currentYear-2}}</option>
           <option value="{{currentYear-1}}">{{currentYear-1}}</option>

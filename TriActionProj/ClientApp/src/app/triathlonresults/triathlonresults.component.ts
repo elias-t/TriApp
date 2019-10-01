@@ -5,6 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RaceApiService } from '../services/race-api.service';
 import { RaceModalComponent } from '../race-modal/race-modal.component';
 import { Globals } from '../globals';
+import { Race } from '../models/race';
+import { Format } from '../models/format';
 
 @Component({
   selector: 'app-triathlonresults',
@@ -13,9 +15,9 @@ import { Globals } from '../globals';
 })
 
   export class TriathlonresultsComponent implements OnInit {
-    public formats: Formats[] = [];
-    public races: Races[] = [];
-    public cacheRaces: Races[] = [];
+    public formats: Format[] = [];
+    public races: Race[] = [];
+    public cacheRaces: Race[] = [];
 
     constructor(private api: RaceApiService, private modal: NgbModal, private globals: Globals) {
 
@@ -48,24 +50,18 @@ import { Globals } from '../globals';
 
   public AddRace() {
     const modalRef = this.modal.open(RaceModalComponent, { size: 'lg', centered: true });
-      modalRef.result.then((result) => {
-        console.log(result);
-      }).catch((error) => {
-        console.log(error);
-      });
+    //modalRef.result.then((result) => {
+    //  console.log('Add New Rota - Saved Click : ' + result);
+    //  this.loading = true;
+    //  console.log('Results : ' + result);
+    //  this.rotaApi.addRota(result, this.weekNumber).subscribe((data: Rota[]) => {
+    //    this.listRota = data;
+    //  });
+    //  this.loading = false;
+    //}, reason => {
+    //  console.log(`Dismissed reason: ${reason}`);
+    //}).catch((error) => {
+    //  console.log(error);
+    //});
     }
-  }
-
-  interface Formats {
-    formatId: number;
-    name: string;
-  }
-
-  interface Races {
-    raceId: string;
-    name: string;
-    raceFormatId: number;
-    year: number;
-    raceFormatName: string;
-    resultsCount: number;
   }

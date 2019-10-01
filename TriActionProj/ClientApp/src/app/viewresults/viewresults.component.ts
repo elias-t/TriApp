@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RaceApiService } from '../services/race-api.service';
 import { Globals } from '../globals';
 
+import { Result } from '../models/result';
 
 @Component({
   selector: 'app-viewresults',
@@ -14,7 +15,7 @@ import { Globals } from '../globals';
 export class ViewresultsComponent implements OnInit {
 
   public raceid: number;
-  public raceResults: Results[] = [];
+  public raceResults: Result[] = [];
   public todayYear: number;
 
 
@@ -30,16 +31,4 @@ export class ViewresultsComponent implements OnInit {
     });
   }
 
-}
-
-interface Results {
-  resultId: number;
-  timeSwim: string;
-  timeT1: string;
-  timeBike: string;
-  timeT2: string;
-  timeRun: string;
-  timeTotal: string;
-  resultAthlete: object;
-  resultRace: object;
 }

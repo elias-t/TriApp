@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Format } from '../models/format';
+
 @Component({
   selector: 'app-triathloncalculator',
   templateUrl: './triathloncalculator.component.html',
@@ -10,19 +12,19 @@ export class TriathloncalculatorComponent {
   public totalTime: number = 0;
   public totalTimeString: string = "";
   public selectRace = "Select event";
-  public selectedRace: Races[1];
   public swim: number = 0;
   public inputSwim: string = "";
   public inputT1: string = "";
   public inputBike: string = "";
   public inputT2: string = "";
   public inputRun: string = "";
-  public races: Races[] = [
-    { name: "Sprint", swim: 0.75, bike: 20, run: 5 },
-    { name: "Olympic", swim: 1.5, bike: 40, run: 10 },
-    { name: "70.3", swim: 1.9, bike: 90, run: 21.1 },
-    { name: "140.6", swim: 3.8, bike: 180, run: 42.2 }
+  public races: Format[] = [
+    { formatId:1, name: "Sprint", swim: 0.75, bike: 20, run: 5 },
+    { formatId:2, name: "Olympic", swim: 1.5, bike: 40, run: 10 },
+    { formatId:3, name: "70.3", swim: 1.9, bike: 90, run: 21.1 },
+    { formatId:4, name: "140.6", swim: 3.8, bike: 180, run: 42.2 }
   ];
+  public selectedRace: Format[];
 
   public selectChangeHandler(event: any) {
     //update the ui
@@ -49,13 +51,4 @@ export class TriathloncalculatorComponent {
     this.totalTimeString = fhours + " hours, " + fminutes + " minutes, " + fseconds + " seconds";
   }
 
-}
-
-
-export interface Races {
-  [key: string]: any;
-  name: string;
-  swim: number;
-  bike: number;
-  run: number;
 }
