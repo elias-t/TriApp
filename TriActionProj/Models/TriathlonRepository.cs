@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 
@@ -81,11 +84,25 @@ namespace TriCalcAngular.Models
             return _context.Results.Where(r => r.Result_Race_Id == raceid).Count();
         }
 
-
-            public IEnumerable<AthleteDTO> GetAthletes()
+        public IEnumerable<AthleteDTO> GetAthletes()
         {
             var results = _context.Athletes;
             return _mapper.Map<IEnumerable<AthleteDTO>>(results).ToList();
+        }
+
+        public int AddRace(RaceDTO raceDTO)
+        {
+            try
+            {
+                var race = _mapper.Map<RaceDTO, Race>(raceDTO);
+                _context.Races.Add(race);
+                int result = _context.SaveChanges();
+                return result;
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         private bool _disposed;
@@ -107,6 +124,5 @@ namespace TriCalcAngular.Models
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        
     }
 }

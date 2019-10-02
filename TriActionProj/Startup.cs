@@ -45,7 +45,7 @@ namespace TestAngularProj
             //Automapper
             mapperConfig = new MapperConfiguration(
                 cfg => cfg.AddProfile(new BasicMapperProfile()));
-            mapperConfig.AssertConfigurationIsValid();
+            //mapperConfig.AssertConfigurationIsValid();
 
             //Create singleton mapper
             services.AddSingleton<IMapper>(sp => mapperConfig.CreateMapper());

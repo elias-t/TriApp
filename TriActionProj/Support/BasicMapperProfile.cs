@@ -43,6 +43,16 @@ namespace TriCalcAngular.Support
                 .ForMember(vm => vm.ResultAthleteId, map => map.MapFrom(m => m.Result_Athlete_Id))
                 .ForMember(vm => vm.ResultRaceId, map => map.MapFrom(m => m.Result_Race_Id))
                 ;
+
+            //other way round
+            CreateMap<RaceDTO, Race>()
+                .ForMember(vm => vm.Race_id, map => map.Ignore())
+                .ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name))
+                .ForMember(vm => vm.Year, map => map.MapFrom(m => m.Year))
+                .ForMember(vm => vm.Race_Format_id, map => map.MapFrom(m => m.RaceFormatId))
+                .ForMember(vm => vm.Results, map => map.Ignore())
+                .ForMember(vm => vm.Format, map => map.Ignore())
+                ;
         }
     }
 }

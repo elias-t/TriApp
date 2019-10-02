@@ -18,6 +18,8 @@ import { Format } from '../models/format';
     public formats: Format[] = [];
     public races: Race[] = [];
     public cacheRaces: Race[] = [];
+    public newRace: Race = new Race();
+
 
     constructor(private api: RaceApiService, private modal: NgbModal, private globals: Globals) {
 
@@ -39,7 +41,7 @@ import { Format } from '../models/format';
       if (filterVal == "0")
         this.races = this.cacheRaces;
       else
-        this.races = this.cacheRaces.filter((item) => item.raceFormatName == filterVal);
+        this.races = this.cacheRaces.filter((item) => item.RaceFormatName == filterVal);
     }
 
     public isResultsDisabled(resultsCount: number) {
@@ -51,17 +53,20 @@ import { Format } from '../models/format';
   public AddRace() {
     const modalRef = this.modal.open(RaceModalComponent, { size: 'lg', centered: true });
     //modalRef.result.then((result) => {
-    //  console.log('Add New Rota - Saved Click : ' + result);
-    //  this.loading = true;
-    //  console.log('Results : ' + result);
-    //  this.rotaApi.addRota(result, this.weekNumber).subscribe((data: Rota[]) => {
-    //    this.listRota = data;
-    //  });
-    //  this.loading = false;
-    //}, reason => {
-    //  console.log(`Dismissed reason: ${reason}`);
+    //  console.log(result);
     //}).catch((error) => {
     //  console.log(error);
     //});
+    modalRef.result.then((result) => {
+      console.log('Add New Race - Saved Click : ' + result);
+      console.log('Results : ' + result);
+      this.api.addRace(result).subscribe((data: Race) => {
+        this.newRace = data;
+      });
+    }, reason => {
+      console.log(`Dismissed reason: ${reason}`);
+    }).catch((error) => {
+      console.log(error);
+    });
     }
   }

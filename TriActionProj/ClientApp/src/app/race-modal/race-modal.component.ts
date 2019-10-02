@@ -15,7 +15,7 @@ export class RaceModalComponent implements OnInit {
   public races: Race[] = [];
   public currentYear: number;
   public isNewRace: boolean;
-  selectedRace: Race;
+  public selectedRace: Race;
   modelRaceName: string;
   modelRaceFormatId: string;
   modelRaceYear: string;
@@ -38,9 +38,10 @@ export class RaceModalComponent implements OnInit {
 
   btnSave_Clicked() {
     //save race.
-    this.selectedRace.name = this.modelRaceName;
-    this.selectedRace.raceFormatId = +this.modelRaceFormatId;
-    this.selectedRace.year = +this.modelRaceYear;
+    this.selectedRace = new Race();
+    this.selectedRace.Name = '' + this.modelRaceName;
+    this.selectedRace.RaceFormatId = +this.modelRaceFormatId;
+    this.selectedRace.Year = +this.modelRaceYear;
     this.activeModal.close(this.selectedRace);
   }
 
