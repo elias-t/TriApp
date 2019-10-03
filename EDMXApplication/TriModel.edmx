@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Athlete_id" />
           </Key>
-          <Property Name="Athlete_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Athlete_id" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DOB" Type="datetime" Nullable="false" />
@@ -18,34 +18,34 @@
           <Key>
             <PropertyRef Name="Format_id" />
           </Key>
-          <Property Name="Format_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Format_id" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Races">
           <Key>
             <PropertyRef Name="Race_id" />
           </Key>
-          <Property Name="Race_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Race_id" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Race_Format_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Year" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Race_Format_id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Year" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="Results">
           <Key>
             <PropertyRef Name="Result_Id" />
           </Key>
-          <Property Name="Result_Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Result_Race_Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Result_Athlete_Id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Result_Id" Type="decimal" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Result_Race_Id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Result_Athlete_Id" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Time_Swim" Type="time" Precision="7" />
           <Property Name="Time_T1" Type="time" Precision="7" />
           <Property Name="Time_Bike" Type="time" Precision="7" />
           <Property Name="Time_T2" Type="time" Precision="7" />
           <Property Name="Time_Run" Type="time" Precision="7" />
           <Property Name="Time_Total" Type="time" Precision="7" />
-          <Property Name="Bib" Type="numeric" Precision="18" Scale="0" />
           <Property Name="Team" Type="nvarchar" MaxLength="50" />
           <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bib" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <Association Name="FK_Races_Formats">
           <End Role="Formats" Type="Self.Formats" Multiplicity="1" />
@@ -127,7 +127,7 @@
           <Key>
             <PropertyRef Name="Race_id" />
           </Key>
-          <Property Name="Race_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Race_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Race_Format_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Year" Type="Decimal" Precision="18" Scale="0" Nullable="false" />

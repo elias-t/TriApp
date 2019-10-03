@@ -9,11 +9,10 @@
 
 namespace EDMXApplication
 {
+    using Entities;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using Entities;
-
     
     public partial class TriathlonResultsEntities : DbContext
     {

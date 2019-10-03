@@ -50,23 +50,23 @@ GO
 
 -- Creating table 'Athletes'
 CREATE TABLE [dbo].[Athletes] (
-    [Athlete_id] decimal(18,0)  NOT NULL,
+    [Athlete_id] decimal(18,0) IDENTITY(1,1)  NOT NULL,
     [FirstName] nvarchar(50)  NOT NULL,
     [LastName] nvarchar(50)  NOT NULL,
-    [DOB] datetime(18,0)  NOT NULL
+    [DOB] datetime  NOT NULL
 );
 GO
 
 -- Creating table 'Formats'
 CREATE TABLE [dbo].[Formats] (
-    [Format_id] decimal(18,0)  NOT NULL,
+    [Format_id] decimal(18,0) IDENTITY(1,1)  NOT NULL,
     [Name] nvarchar(50)  NOT NULL
 );
 GO
 
 -- Creating table 'Races'
 CREATE TABLE [dbo].[Races] (
-    [Race_id] decimal(18,0)  NOT NULL,
+    [Race_id] decimal(18,0) IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
     [Race_Format_id] decimal(18,0)  NOT NULL,
     [Year] decimal(18,0)  NOT NULL
@@ -75,7 +75,7 @@ GO
 
 -- Creating table 'Results'
 CREATE TABLE [dbo].[Results] (
-    [Result_Id] decimal(18,0)  NOT NULL,
+    [Result_Id] decimal(18,0) IDENTITY(1,1)  NOT NULL,
     [Result_Race_Id] decimal(18,0)  NOT NULL,
     [Result_Athlete_Id] decimal(18,0)  NOT NULL,
     [Time_Swim] time  NULL,
@@ -173,3 +173,23 @@ GO
 
 --Update Time_Total
 --UPDATE Results SET Time_Total = (SELECT CAST(CAST(time_swim as datetime)+CAST(time_t1 as datetime)+CAST(time_bike as datetime)+CAST(time_t2 as datetime)+CAST(time_run as datetime) as time) WHERE Result_Id=1)
+
+
+-- Add rows.
+--Formats
+INSERT INTO Formats(Name) VALUES('Sprint')
+INSERT INTO Formats(Name) VALUES('Olympic')
+INSERT INTO Formats(Name) VALUES('Half Ironman')
+INSERT INTO Formats(Name) VALUES('Ironman')
+--Races
+INSERT INTO Races(Name,Race_Format_id, Year) VALUES('Copenhagen',4,2019)
+INSERT INTO Races(Name,Race_Format_id, Year) VALUES('Talin',4,	2018)
+INSERT INTO Races(Name,Race_Format_id, Year) VALUES('Almiraman',3,	2018)
+INSERT INTO Races(Name,Race_Format_id, Year) VALUES('St. Marys Loch',2,	2017)
+INSERT INTO Races(Name,Race_Format_id, Year) VALUES('St. Marys Loch',2,	2018)
+INSERT INTO Races(Name,Race_Format_id, Year) VALUES('Eyemouth',1,	2016)
+--Athletes
+INSERT INTO Athletes(FirstName,LastName,DOB) VALUES('Elias', 'Theo', CONVERT(datetime,'1980/01/30'))
+--Results
+INSERT INTO Results(Result_Race_Id,Result_Athlete_Id,Time_Swim,Time_T1,Time_Bike,Time_T2,Time_Run,Time_Total,Team,City,Bib) 
+VALUES(6,3,'00:13:00.0000000','00:01:30.0000000','00:40:00.0000000','00:01:00.0000000','00:25:00.0000000','01:20:30.0000000','ScienceTraining','Edinbrugh','131')

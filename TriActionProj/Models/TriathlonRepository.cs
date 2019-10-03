@@ -92,17 +92,30 @@ namespace TriCalcAngular.Models
 
         public int AddRace(RaceDTO raceDTO)
         {
-            try
+            //var race = new Race() { Race_Format_id = raceDTO.RaceFormatId, Name = raceDTO.Name, Year = raceDTO.Year };
+            var race = _mapper.Map<RaceDTO, Race>(raceDTO);
+            _context.Races.Add(race);
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                var race = _mapper.Map<RaceDTO, Race>(raceDTO);
-                _context.Races.Add(race);
-                int result = _context.SaveChanges();
-                return result;
+                try
+                {
+
+                    //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Races ON");
+                    int result = _context.SaveChanges();
+                    //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Races OFF");
+                    transaction.Commit();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    _context.Database.CloseConnection();
+                }
             }
-            catch(Exception e)
-            {
-                throw e;
-            }
+            
         }
 
         private bool _disposed;

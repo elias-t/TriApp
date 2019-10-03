@@ -52,16 +52,12 @@ import { Format } from '../models/format';
 
   public AddRace() {
     const modalRef = this.modal.open(RaceModalComponent, { size: 'lg', centered: true });
-    //modalRef.result.then((result) => {
-    //  console.log(result);
-    //}).catch((error) => {
-    //  console.log(error);
-    //});
     modalRef.result.then((result) => {
       console.log('Add New Race - Saved Click : ' + result);
       console.log('Results : ' + result);
       this.api.addRace(result).subscribe((data: Race) => {
         this.newRace = data;
+        window.location.reload();
       });
     }, reason => {
       console.log(`Dismissed reason: ${reason}`);

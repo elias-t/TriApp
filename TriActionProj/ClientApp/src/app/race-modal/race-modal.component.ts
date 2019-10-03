@@ -46,7 +46,7 @@ export class RaceModalComponent implements OnInit {
   }
 
   checkIfNewRace(raceVal: any) {
-    if (raceVal == "0")
+    if (raceVal == "Add new race")
       this.isNewRace = true;
     else
       this.isNewRace = false;

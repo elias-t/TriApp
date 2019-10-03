@@ -8,8 +8,7 @@
       <label for="raceName" class="col-md-4 col-form-label" style="text-align: right">Race name:</label>
       <div class="input-group col-md-8">
         <select (change)="checkIfNewRace($event.target.value)" [(ngModel)]="modelRaceName" name="newRace">
-          <option value="-1">Select</option>
-          <option value="0">Add new race event</option>
+          <option value="Add new race" selected>Add new race event</option>
           <option *ngFor="let race of races" name="raceId" [ngValue]="race.raceId">
             {{race.name}} - {{race.raceFormatName}}
           </option>
@@ -54,6 +53,6 @@
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="btnClose_Clicked()">Cancel</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel Click')">Cancel</button>
   <button type="button" class="btn btn-outline-dark" name="saveButton" (click)="btnSave_Clicked()">Save</button>
 </div>
