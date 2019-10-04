@@ -39,6 +39,13 @@ namespace TriCalcAngular.Controllers
             return _model.GetRaces();
         }
 
+        [Route("api/Triathlon/GetDistinctRaces")]
+        [HttpGet("[action]")]
+        public IEnumerable<string> GetDistinctRaces()
+        {
+            return _model.GetDistinctRaces();
+        }
+
         //[Route("/api/Triathlon/GetResultsByRaceId/{raceid}")]
         [HttpGet("api/Triathlon/GetResultsByRaceId/{raceid}")]
         public IEnumerable<ResultDTO> GetResultsByRaceId(int raceid)

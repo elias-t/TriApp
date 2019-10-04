@@ -19,6 +19,10 @@ export class RaceApiService {
     return this.http.get<any[]>(`${this.globals.baseURL}api/Triathlon/GetRaces`);
   }
 
+  getDistinctRaces() {
+    return this.http.get<any[]>(`${this.globals.baseURL}api/Triathlon/GetDistinctRaces`);
+  }
+
   getRaceById(id: number) {
     return this.http.get<any[]>(`${this.globals.baseURL}api/Triathlon/GetResultsByRaceId/${id}`);
   }

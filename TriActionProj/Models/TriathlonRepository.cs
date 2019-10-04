@@ -50,6 +50,12 @@ namespace TriCalcAngular.Models
             return mappedRaces;
         }
 
+        public IEnumerable<string> GetDistinctRaces()
+        {
+            var races = _context.Races.Select(r => r.Name).Distinct();
+            return races;
+        }
+
         public IEnumerable<ResultDTO> GetResultsByRaceId(int raceid)
         {
             var mappedRaces = GetRaces();
@@ -137,5 +143,6 @@ namespace TriCalcAngular.Models
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

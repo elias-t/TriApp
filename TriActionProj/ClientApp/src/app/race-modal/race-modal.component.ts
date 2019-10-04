@@ -13,9 +13,12 @@ export class RaceModalComponent implements OnInit {
 
   public formats: Format[] = [];
   public races: Race[] = [];
+  public distinctRaces: string[] = [];
+  public resultRace: Race;
+  public selectedRace: Race;
   public currentYear: number;
   public isNewRace: boolean;
-  public selectedRace: Race;
+  public raceExists: boolean;
   modelRaceName: string;
   modelRaceFormatId: string;
   modelRaceYear: string;
@@ -30,6 +33,9 @@ export class RaceModalComponent implements OnInit {
     this.api.getRaces().subscribe(data => {
       this.races = data;
     });
+    this.api.getDistinctRaces().subscribe(data => {
+      this.distinctRaces = data;
+    });
   }
 
   btnClose_Clicked() {
@@ -39,10 +45,24 @@ export class RaceModalComponent implements OnInit {
   btnSave_Clicked() {
     //save race.
     this.selectedRace = new Race();
-    this.selectedRace.Name = '' + this.modelRaceName;
-    this.selectedRace.RaceFormatId = +this.modelRaceFormatId;
-    this.selectedRace.Year = +this.modelRaceYear;
-    this.activeModal.close(this.selectedRace);
+    if (this.isNewRace) {
+      this.selectedRace.name = '' + this.modelRaceName;
+      this.selectedRace.raceFormatId = +this.modelRaceFormatId;
+      this.selectedRace.year = +this.modelRaceYear;
+    }
+    else {
+      this.resultRace = this.races.filter((item) => item.raceId == this.modelRaceName)[0]; //get the race with this id.
+      var sameEvents = this.races.filter((item) => item.name == this.resultRace.name); // get all races with this name
+      if (sameEvents.filter((item) => item.year == +this.modelRaceYear).length > 0) //check if selected year already exists.
+        this.raceExists = true;
+      else {
+        this.raceExists = false;
+        this.selectedRace.name = this.resultRace.name;
+        this.selectedRace.raceFormatId = +this.resultRace.raceFormatId;
+        this.selectedRace.year = +this.modelRaceYear;
+        this.activeModal.close(this.selectedRace);
+      }
+    }
   }
 
   checkIfNewRace(raceVal: any) {

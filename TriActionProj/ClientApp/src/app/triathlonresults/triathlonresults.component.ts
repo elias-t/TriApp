@@ -41,7 +41,7 @@ import { Format } from '../models/format';
       if (filterVal == "0")
         this.races = this.cacheRaces;
       else
-        this.races = this.cacheRaces.filter((item) => item.RaceFormatName == filterVal);
+        this.races = this.cacheRaces.filter((item) => item.raceFormatName == filterVal);
     }
 
     public isResultsDisabled(resultsCount: number) {

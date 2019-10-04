@@ -2,6 +2,12 @@
   <h4 class="modal-title" id="modal-title">Race</h4>
 </div>
 
+<div>
+  <ngb-alert type="danger" *ngIf="raceExists" [dismissible]="true">
+    <span style="color: darkred"><strong>*</strong></span> This race event already exists for this year.
+  </ngb-alert>
+</div>
+
 <div class="modal-body">
   <ng-form #raceModal="ngForm">
     <div class="form-group row">
