@@ -10,6 +10,7 @@ import { NavmenuComponent } from './navmenu/navmenu.component';
 import { TriathlonresultsComponent } from './triathlonresults/triathlonresults.component';
 import { ViewresultsComponent } from './viewresults/viewresults.component';
 import { RaceModalComponent } from './race-modal/race-modal.component';
+import { UniqueRacePipe } from './unique-race.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RaceModalComponent } from './race-modal/race-modal.component';
     NavmenuComponent,
     TriathlonresultsComponent,
     ViewresultsComponent,
-    RaceModalComponent
+    RaceModalComponent,
+    UniqueRacePipe
   ],
   imports: [
     BrowserModule,
