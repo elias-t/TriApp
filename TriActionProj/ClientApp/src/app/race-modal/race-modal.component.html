@@ -15,7 +15,8 @@
       <div class="input-group col-md-8">
         <select (change)="checkIfNewRace($event.target.value)" [(ngModel)]="modelRaceName" name="newRace">
           <option value="Add new race" selected>Add new race event</option>
-          <option *ngFor="let race of (races | uniqueRace)" name="raceId" [ngValue]="race.raceId">
+          <option *ngFor="let race of (races | uniqueRace)" name="raceId" [ngValue]="race">
+          <!--<option *ngFor="let race of races" name="raceId" [ngValue]="race.raceId">-->
             {{race}}
           </option>
         </select>
@@ -60,5 +61,5 @@
 
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel Click')">Cancel</button>
-  <button type="button" class="btn btn-outline-dark" name="saveButton" (click)="btnSave_Clicked()">Save</button>
+  <button type="button" class="btn btn-outline-dark" name="Save" (click)="btnSave_Clicked()">Save</button>
 </div>

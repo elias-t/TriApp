@@ -49,16 +49,17 @@ export class RaceModalComponent implements OnInit {
       this.selectedRace.name = '' + this.modelRaceName;
       this.selectedRace.raceFormatId = +this.modelRaceFormatId;
       this.selectedRace.year = +this.modelRaceYear;
+      this.activeModal.close(this.selectedRace);
     }
     else {
-      this.resultRace = this.races.filter((item) => item.raceId == this.modelRaceName)[0]; //get the race with this id.
-      var sameEvents = this.races.filter((item) => item.name == this.resultRace.name); // get all races with this name
+      //this.resultRace = this.races.filter((item) => item.raceId == this.modelRaceName)[0]; //get the race with this id.
+      var sameEvents = this.races.filter((item) => item.name == this.modelRaceName); // get all races with this name
       if (sameEvents.filter((item) => item.year == +this.modelRaceYear).length > 0) //check if selected year already exists.
         this.raceExists = true;
       else {
         this.raceExists = false;
-        this.selectedRace.name = this.resultRace.name;
-        this.selectedRace.raceFormatId = +this.resultRace.raceFormatId;
+        this.selectedRace.name = this.modelRaceName;
+        this.selectedRace.raceFormatId = +sameEvents[0].raceFormatId; //find race format from first of same events.
         this.selectedRace.year = +this.modelRaceYear;
         this.activeModal.close(this.selectedRace);
       }
