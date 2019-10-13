@@ -50,8 +50,10 @@ import { Format } from '../models/format';
       return true;
     }
 
-  public AddRace() {
+  public addRace() {
     const modalRef = this.modal.open(RaceModalComponent, { size: 'lg', centered: true });
+    modalRef.componentInstance.selectedRace = new Race();
+    modalRef.componentInstance.isEdit = false;
     modalRef.result.then((result) => {
       console.log('Add New Race - Saved Click : ' + result);
       console.log('Results : ' + result);
@@ -64,5 +66,24 @@ import { Format } from '../models/format';
     }).catch((error) => {
       console.log(error);
     });
-    }
   }
+
+  public editRace(race: Race) {
+    const modalRef = this.modal.open(RaceModalComponent, { size: 'lg', centered: true });
+    modalRef.componentInstance.selectedRace = race;
+    modalRef.componentInstance.isEdit = true;
+    modalRef.result.then((result) => {
+      console.log('Edit Existing Race - Saved Click : ' + result);
+      console.log('Results : ' + result);
+      this.api.addRace(result).subscribe((data: Race) => {
+        this.newRace = data;
+        window.location.reload();
+      });
+    }, reason => {
+      console.log(`Dismissed reason: ${reason}`);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+}
+

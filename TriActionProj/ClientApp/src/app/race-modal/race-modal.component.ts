@@ -14,11 +14,12 @@ export class RaceModalComponent implements OnInit {
   public formats: Format[] = [];
   public races: Race[] = [];
   public distinctRaces: string[] = [];
-  public resultRace: Race;
+  //public resultRace: Race;
   public selectedRace: Race;
   public currentYear: number;
   public isNewRace: boolean;
   public raceExists: boolean;
+  public isEdit: boolean;
   modelRaceName: string;
   modelRaceFormatId: string;
   modelRaceYear: string;

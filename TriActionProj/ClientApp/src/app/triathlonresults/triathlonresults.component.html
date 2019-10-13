@@ -21,6 +21,7 @@
         <th>Format</th>
         <th>Year</th>
         <th>Results</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
         <td>{{ race.raceFormatName }}</td>
         <td>{{ race.year }}</td>
         <td><a [class.disabled]="!isResultsDisabled(race.resultsCount)" [routerLink]="['../viewresults', race.raceId]">View results</a></td>
+        <td><button class="btn btn-primary" (click)="editRace(race)">Edit</button></td>
       </tr>
     </tbody>
   </table>
@@ -36,7 +38,7 @@
 
 <div>
   <p>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="AddRace()">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addRace()">
       Add race
     </button>
   </p>

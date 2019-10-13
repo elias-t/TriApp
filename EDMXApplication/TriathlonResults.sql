@@ -192,4 +192,4 @@ INSERT INTO Races(Name,Race_Format_id, Year) VALUES('Eyemouth',1,	2016)
 INSERT INTO Athletes(FirstName,LastName,DOB) VALUES('Elias', 'Theo', CONVERT(datetime,'1980/01/30'))
 --Results
 INSERT INTO Results(Result_Race_Id,Result_Athlete_Id,Time_Swim,Time_T1,Time_Bike,Time_T2,Time_Run,Time_Total,Team,City,Bib) 
-VALUES(6,3,'00:13:00.0000000','00:01:30.0000000','00:40:00.0000000','00:01:00.0000000','00:25:00.0000000','01:20:30.0000000','ScienceTraining','Edinbrugh','131')
+VALUES(6,1,'00:13:00.0000000','00:01:30.0000000','00:40:00.0000000','00:01:00.0000000','00:25:00.0000000','01:20:30.0000000','ScienceTraining','Edinbrugh','131')
