@@ -10,6 +10,10 @@ namespace TriCalcAngular.Models
         IEnumerable<ResultDTO> GetResultsByRaceId(int raceid);
         int GetResultsCountByRaceId(int raceid);
         int AddRace(RaceDTO race);
+
+        int UpdateRace(RaceDTO race);
+
+        int DeleteRace(int raceid);
         IEnumerable<string> GetDistinctRaces();
     }
 }

@@ -74,6 +74,36 @@ namespace TriCalcAngular.Controllers
             
         }
 
+        [HttpPost("api/Triathlon/UpdateRace")]
+        public ActionResult UpdateRace([FromBody]RaceDTO race)
+        {
+            try
+            {
+                _model.UpdateRace(race);
+                return CreatedAtAction("Existing race updated", race);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+        }
+
+        [HttpDelete("api/Triathlon/DeleteRace/{raceid}")]
+        public ActionResult DeleteRace(int raceid)
+        {
+            try
+            {
+                _model.DeleteRace(raceid);
+                return CreatedAtAction("Existing race updated", raceid);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+        }
+
         //// GET: api/Results/5
         //[HttpGet("{id}")]
         //public async Task<IActionResult> GetResults([FromRoute] decimal id)

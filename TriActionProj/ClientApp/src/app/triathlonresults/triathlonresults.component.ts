@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RaceApiService } from '../services/race-api.service';
 import { RaceModalComponent } from '../race-modal/race-modal.component';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { Globals } from '../globals';
 import { Race } from '../models/race';
 import { Format } from '../models/format';
@@ -44,7 +45,7 @@ import { Format } from '../models/format';
         this.races = this.cacheRaces.filter((item) => item.raceFormatName == filterVal);
     }
 
-    public isResultsDisabled(resultsCount: number) {
+    public hasResults(resultsCount: number) {
       if (resultsCount == 0)
         return false;
       return true;
@@ -68,16 +69,31 @@ import { Format } from '../models/format';
     });
   }
 
-  public editRace(race: Race) {
+  public updateRace(race: Race) {
     const modalRef = this.modal.open(RaceModalComponent, { size: 'lg', centered: true });
     modalRef.componentInstance.selectedRace = race;
     modalRef.componentInstance.isEdit = true;
     modalRef.result.then((result) => {
       console.log('Edit Existing Race - Saved Click : ' + result);
       console.log('Results : ' + result);
-      this.api.addRace(result).subscribe((data: Race) => {
+      this.api.updateRace(result).subscribe((data: Race) => {
         this.newRace = data;
         window.location.reload();
+      });
+    }, reason => {
+      console.log(`Dismissed reason: ${reason}`);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  public deleteRace(race: Race) {
+    const modalConfirmation = this.modal.open(ConfirmationDialogComponent);
+    modalConfirmation.componentInstance.modalTitle = 'Delete race?';
+    modalConfirmation.componentInstance.message = 'Are you sure you like to delete this race parmanently?';
+    modalConfirmation.result.then((result) => {
+    this.api.deleteRace(+race.raceId).subscribe(() => {
+      window.location.reload();
       });
     }, reason => {
       console.log(`Dismissed reason: ${reason}`);

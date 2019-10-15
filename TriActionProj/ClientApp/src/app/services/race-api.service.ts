@@ -33,4 +33,16 @@ export class RaceApiService {
     const obj = race;
     return this.http.post(addRaceURL, obj);
   }
+
+  updateRace(race: Race) {
+    const updateRaceURL = `${this.globals.baseURL}api/Triathlon/UpdateRace`;
+    //const obj = JSON.stringify({ race });
+    const obj = race;
+    return this.http.post(updateRaceURL, obj);
+  }
+
+  deleteRace(id: number) {
+    const deleteRaceURL = `${this.globals.baseURL}api/Triathlon/DeleteRace/${id}`;
+    return this.http.delete(deleteRaceURL);
+  }
 }

@@ -10,6 +10,7 @@ import { NavmenuComponent } from './navmenu/navmenu.component';
 import { TriathlonresultsComponent } from './triathlonresults/triathlonresults.component';
 import { ViewresultsComponent } from './viewresults/viewresults.component';
 import { RaceModalComponent } from './race-modal/race-modal.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { UniqueRacePipe } from './unique-race.pipe';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { UniqueRacePipe } from './unique-race.pipe';
     TriathlonresultsComponent,
     ViewresultsComponent,
     RaceModalComponent,
+    ConfirmationDialogComponent,
     UniqueRacePipe
   ],
   imports: [
@@ -30,7 +32,7 @@ import { UniqueRacePipe } from './unique-race.pipe';
     HttpClientModule
   ],
   providers: [],
-  entryComponents: [RaceModalComponent],
+  entryComponents: [RaceModalComponent, ConfirmationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

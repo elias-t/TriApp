@@ -22,6 +22,7 @@
         <th>Year</th>
         <th>Results</th>
         <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -29,8 +30,9 @@
         <td>{{ race.name }}</td>
         <td>{{ race.raceFormatName }}</td>
         <td>{{ race.year }}</td>
-        <td><a [class.disabled]="!isResultsDisabled(race.resultsCount)" [routerLink]="['../viewresults', race.raceId]">View results</a></td>
-        <td><button class="btn btn-primary" (click)="editRace(race)">Edit</button></td>
+        <td><a [class.disabled]="!hasResults(race.resultsCount)" [routerLink]="['../viewresults', race.raceId]">View results</a></td>
+        <td><button class="btn btn-primary" (click)="updateRace(race)">Edit</button></td>
+        <td><button *ngIf="!hasResults(race.resultsCount)" class="btn btn-primary" (click)="deleteRace(race)">Delete</button></td>
       </tr>
     </tbody>
   </table>

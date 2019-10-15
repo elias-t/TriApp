@@ -105,7 +105,6 @@ namespace TriCalcAngular.Models
             {
                 try
                 {
-
                     //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Races ON");
                     int result = _context.SaveChanges();
                     //_context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Races OFF");
@@ -121,8 +120,56 @@ namespace TriCalcAngular.Models
                     _context.Database.CloseConnection();
                 }
             }
-            
         }
+
+        public int UpdateRace(RaceDTO raceDTO)
+        {
+            var currentRace = _context.Races.SingleOrDefault(r => r.Race_id == raceDTO.RaceId);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    currentRace.Name = raceDTO.Name;
+                    currentRace.Race_Format_id = raceDTO.RaceFormatId;
+                    currentRace.Year = raceDTO.Year;
+                    int result = _context.SaveChanges();
+                    transaction.Commit();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    _context.Database.CloseConnection();
+                }
+            }
+        }
+
+        public int DeleteRace(int raceid)
+        {
+            var currentRace = _context.Races.SingleOrDefault(r => r.Race_id == raceid);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    _context.Races.Remove(currentRace);
+                    int result = _context.SaveChanges();
+                    transaction.Commit();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    _context.Database.CloseConnection();
+                }
+            }
+        }
+
 
         private bool _disposed;
 
