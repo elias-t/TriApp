@@ -1,0 +1,34 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Athlete</h4>
+</div>
+
+<div class="modal-body">
+  <ng-form #athleteModal="ngForm">
+    <div class="form-group row">
+      <label for="firstName" class="col-md-4 col-form-label" style="text-align: right">Firstname:</label>
+      <div class="input-group col-md-8">
+        <input id="firstName" name="firstName" class="form-control" placeholder="First name" [(ngModel)]="selectedAthlete.firstName" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="lastName" class="col-md-4 col-form-label" style="text-align: right">Lastname:</label>
+      <div class="input-group col-md-8">
+        <input id="lastName" name="lastName" class="form-control" placeholder="First name" [(ngModel)]="selectedAthlete.lastName" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="dob" class="col-md-4 col-form-label" style="text-align: right">Date of birth:</label>
+      <div class="input-group col-md-8">
+        <ngb-datepicker #dp [(ngModel)]="selectedAthlete.dbo" name="dateofbirth" (navigate)="date = $event.next"></ngb-datepicker>
+      </div>
+    </div>
+
+  </ng-form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel Click')">Cancel</button>
+  <button type="button" class="btn btn-outline-dark" name="Save" (click)="btnSave_Clicked()">Save</button>
+</div>

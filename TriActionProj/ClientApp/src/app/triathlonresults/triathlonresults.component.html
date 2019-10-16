@@ -1,5 +1,9 @@
+<h1>Races</h1>
+
+<h4>List of triathlon races</h4>
+<p>&nbsp;</p>
 <div>
-  <label>Triathon competitions: </label>
+  <label>Filter by format: </label>
   <select (change)="filterRaces($event.target.value)">
     <option value="0">--All--</option>
     <option *ngFor="let format of formats" value={{format.name}}>
@@ -8,9 +12,16 @@
   </select>
 </div>
 
-<h1>Races</h1>
+<div>
+  <label>Filter by name: </label>
+  <select (change)="filterRacesByName($event.target.value)">
+    <option value="0">--All--</option>
+    <option *ngFor="let race of (races | uniqueRace)" value={{race}}>
+      {{race}}
+    </option>
+  </select>
+</div>
 
-<p>This component demonstrates fetching data from the server.</p>
 
 <p *ngIf="!races"><em>Loading...</em></p>
 <div *ngIf="races">
@@ -42,6 +53,10 @@
   <p>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addRace()">
       Add race
+    </button>
+  &nbsp;
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addAthlete()">
+      Add athlete
     </button>
   </p>
 </div>
