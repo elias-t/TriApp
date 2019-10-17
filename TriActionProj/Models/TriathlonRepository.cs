@@ -170,6 +170,28 @@ namespace TriCalcAngular.Models
             }
         }
 
+        public int AddAthlete(AthleteDTO athleteDTO)
+        {
+            var athlete = _mapper.Map<AthleteDTO, Athlete>(athleteDTO);
+            _context.Athletes.Add(athlete);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    int result = _context.SaveChanges();
+                    transaction.Commit();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    _context.Database.CloseConnection();
+                }
+            }
+        }
 
         private bool _disposed;
 
@@ -190,6 +212,5 @@ namespace TriCalcAngular.Models
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
     }
 }

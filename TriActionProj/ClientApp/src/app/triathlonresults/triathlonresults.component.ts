@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { RaceApiService } from '../services/race-api.service';
@@ -114,14 +113,12 @@ import { Athlete } from '../models/athlete';
   public addAthlete() {
     const modalRef = this.modal.open(AthleteModalComponent, { size: 'lg', centered: true });
     modalRef.componentInstance.selectedAthlete = new Athlete();
-    modalRef.componentInstance.isEdit = false;
     modalRef.result.then((result) => {
       console.log('Add New athlete: ' + result);
       console.log('Results : ' + result);
-      //this.api.addRace(result).subscribe((data: Athlete) => {
-      //  this.newRace = data;
-      //  window.location.reload();
-      //});
+      this.api.addAthlete(result).subscribe((data: Athlete) => {
+        //window.location.reload();
+      });
     }, reason => {
       console.log(`Dismissed reason: ${reason}`);
     }).catch((error) => {

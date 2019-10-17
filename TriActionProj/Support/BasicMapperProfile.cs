@@ -53,6 +53,11 @@ namespace TriCalcAngular.Support
                 .ForMember(vm => vm.Results, map => map.Ignore())
                 .ForMember(vm => vm.Format, map => map.Ignore())
                 ;
+            CreateMap<AthleteDTO, Athlete>()
+                .ForMember(vm => vm.Athlete_id, map => map.Ignore())
+                .ForMember(vm => vm.FirstName, map => map.MapFrom(m => m.FirstName))
+                .ForMember(vm => vm.LastName, map => map.MapFrom(m => m.LastName))
+                .ForMember(vm => vm.DOB, map => map.MapFrom(m => m.DOB));
         }
     }
 }

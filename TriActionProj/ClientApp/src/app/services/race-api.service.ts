@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Globals } from '../globals';
 import { Race } from '../models/race';
+import { Athlete } from '../models/athlete';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,12 @@ export class RaceApiService {
   deleteRace(id: number) {
     const deleteRaceURL = `${this.globals.baseURL}api/Triathlon/DeleteRace/${id}`;
     return this.http.delete(deleteRaceURL);
+  }
+
+  addAthlete(athlete: Athlete) {
+    const addAthleteURL = `${this.globals.baseURL}api/Triathlon/AddAthlete`;
+    //const obj = JSON.stringify({ race });
+    const obj = athlete;
+    return this.http.post(addAthleteURL, obj);
   }
 }

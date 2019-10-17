@@ -21,7 +21,7 @@
     <div class="form-group row">
       <label for="dob" class="col-md-4 col-form-label" style="text-align: right">Date of birth:</label>
       <div class="input-group col-md-8">
-        <ngb-datepicker #dp [(ngModel)]="selectedAthlete.dbo" name="dateofbirth" (navigate)="date = $event.next"></ngb-datepicker>
+        <ngb-datepicker #dp [minDate]="{year: 1930, month: 1, day: 1}" [(ngModel)]="athleteDOB" name="dateofbirth" (navigate)="date = $event.next"></ngb-datepicker>
       </div>
     </div>
 

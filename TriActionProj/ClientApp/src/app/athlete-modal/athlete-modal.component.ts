@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Athlete } from '../models/athlete';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-athlete-modal',
@@ -10,8 +11,10 @@ import { Athlete } from '../models/athlete';
 export class AthleteModalComponent implements OnInit {
 
   public selectedAthlete: Athlete;
+  public athleteDOB: NgbDateStruct;
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private parserFormatter: NgbDateParserFormatter) {
+  }
 
   ngOnInit() {
   }
@@ -21,6 +24,7 @@ export class AthleteModalComponent implements OnInit {
   }
 
   btnSave_Clicked() {
+    this.selectedAthlete.dob = this.parserFormatter.format(this.athleteDOB);
     this.activeModal.close(this.selectedAthlete);
   }
 

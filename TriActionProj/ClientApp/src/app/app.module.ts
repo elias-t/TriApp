@@ -13,6 +13,7 @@ import { RaceModalComponent } from './race-modal/race-modal.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { UniqueRacePipe } from './unique-race.pipe';
 import { AthleteModalComponent } from './athlete-modal/athlete-modal.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { AthleteModalComponent } from './athlete-modal/athlete-modal.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   entryComponents: [RaceModalComponent, ConfirmationDialogComponent, AthleteModalComponent],
   bootstrap: [AppComponent]
 })

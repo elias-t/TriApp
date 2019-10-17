@@ -104,6 +104,21 @@ namespace TriCalcAngular.Controllers
 
         }
 
+        [HttpPost("api/Triathlon/AddAthlete")]
+        public ActionResult AddAthlete([FromBody]AthleteDTO athlete)
+        {
+            try
+            {
+                _model.AddAthlete(athlete);
+                return CreatedAtAction("New athlete added", athlete);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+        }
+
         //// GET: api/Results/5
         //[HttpGet("{id}")]
         //public async Task<IActionResult> GetResults([FromRoute] decimal id)

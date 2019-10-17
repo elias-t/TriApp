@@ -11,7 +11,8 @@ namespace Entities
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Athlete
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,8 @@ namespace Entities
         {
             this.Results = new HashSet<Result>();
         }
-    
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public decimal Athlete_id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
