@@ -10,7 +10,7 @@ namespace TriCalcAngular.Models
             Results = new HashSet<ResultDTO>();
         }
 
-        public decimal AthleteId { get; set; }
+        public int AthleteId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DOB { get; set; }

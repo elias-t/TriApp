@@ -5,9 +5,9 @@ namespace TriCalcAngular.Models
 {
     public partial class ResultDTO
     {
-        public decimal ResultId { get; set; }
-        public decimal ResultRaceId { get; set; }
-        public decimal ResultAthleteId { get; set; }
+        public int ResultId { get; set; }
+        public int ResultRaceId { get; set; }
+        public int ResultAthleteId { get; set; }
         public TimeSpan? TimeSwim { get; set; }
         public TimeSpan? TimeT1 { get; set; }
         public TimeSpan? TimeBike { get; set; }

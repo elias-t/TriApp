@@ -14,7 +14,6 @@ export class RaceModalComponent implements OnInit {
   public formats: Format[] = [];
   public races: Race[] = [];
   public distinctRaces: string[] = [];
-  //public resultRace: Race;
   public selectedRace: Race;
   public currentYear: number;
   public isNewRace: boolean;
@@ -45,7 +44,6 @@ export class RaceModalComponent implements OnInit {
 
   btnSave_Clicked() {
     //save race.
-    //this.selectedRace = new Race();
     if (!this.isEdit) {
       if (this.isNewRace) {
         this.activeModal.close(this.selectedRace);

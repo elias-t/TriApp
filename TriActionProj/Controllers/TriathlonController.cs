@@ -39,6 +39,21 @@ namespace TriCalcAngular.Controllers
             return _model.GetRaces();
         }
 
+        [Route("api/Triathlon/GetAthletes")]
+        [HttpGet("[action]")]
+
+        public IEnumerable<AthleteDTO> GetAthletes()
+        {
+            return _model.GetAthletes();
+        }
+
+        [Route("api/Triathlon/GetAthletesForRace/{raceid}")]
+        [HttpGet("[action]")]
+        public IEnumerable<AthleteDTO> GetAthletesForRace(int raceid)
+        {
+            return _model.GetAthletesForRace(raceid);
+        }
+
         [Route("api/Triathlon/GetDistinctRaces")]
         [HttpGet("[action]")]
         public IEnumerable<string> GetDistinctRaces()
@@ -104,130 +119,22 @@ namespace TriCalcAngular.Controllers
 
         }
 
-        [HttpPost("api/Triathlon/AddAthlete")]
-        public ActionResult AddAthlete([FromBody]AthleteDTO athlete)
+        [HttpPost("api/Triathlon/AddAthlete/{raceid}")]
+        public ActionResult AddAthlete([FromBody]AthleteDTO athlete, int raceId)
         {
             try
             {
-                _model.AddAthlete(athlete);
+                var athleteId = athlete.AthleteId;
+                if (athlete.AthleteId == 0)
+                    athleteId = _model.AddAthlete(athlete);
+                //add athlete to race, i.e. add result
+                _model.AddAthleteToRace(athleteId, raceId);
                 return CreatedAtAction("New athlete added", athlete);
             }
             catch (Exception e)
             {
                 return BadRequest(e);
             }
-
         }
-
-        //// GET: api/Results/5
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetResults([FromRoute] decimal id)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var results = await _context.Results.FindAsync(id);
-
-        //    if (results == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(results);
-        //}
-
-
-
-        //// PUT: api/Results/5
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutResults([FromRoute] decimal id, [FromBody] Results results)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (id != results.ResultId)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(results).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ResultsExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-        //// POST: api/Results
-        //[HttpPost]
-        //public async Task<IActionResult> PostResults([FromBody] Results results)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    _context.Results.Add(results);
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (ResultsExists(results.ResultId))
-        //        {
-        //            return new StatusCodeResult(StatusCodes.Status409Conflict);
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return CreatedAtAction("GetResults", new { id = results.ResultId }, results);
-        //}
-
-        //// DELETE: api/Results/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteResults([FromRoute] decimal id)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var results = await _context.Results.FindAsync(id);
-        //    if (results == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Results.Remove(results);
-        //    await _context.SaveChangesAsync();
-
-        //    return Ok(results);
-        //}
-
-        //private bool ResultsExists(decimal id)
-        //{
-        //    return _context.Results.Any(e => e.ResultId == id);
-        //}
     }
 }

@@ -1,37 +1,24 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-title">Add athlete to race: {{modalRace.name}}, {{modalRace.year}}</h4>
+  <h4 class="modal-title" id="modal-title">Add result</h4>
 </div>
 
 <div class="modal-body">
-  <ng-form #athleteModal="ngForm">
-
+  <ng-form #resultModal="ngForm">
     <div class="form-group row">
-      <label for="athleteName" class="col-md-4 col-form-label" style="text-align: right">Athlete name:</label>
-      <div class="input-group col-md-8">
-        <select (change)="checkIfNewAthlete($event.target.value)" [(ngModel)]="modelAthlete" name="newAthlete">
-          <option value="Add new athlete" selected>Add new athlete</option>
-          <option *ngFor="let athlete of athletes" name="athleteId" [ngValue]="athlete.athleteId">
-            {{athlete.firstName + "," + athlete.lastName + "," + athlete.dob.substring(0,10)}}
-          </option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group row" *ngIf="isNewAthlete">
       <label for="firstName" class="col-md-4 col-form-label" style="text-align: right">Firstname:</label>
       <div class="input-group col-md-8">
         <input id="firstName" name="firstName" class="form-control" placeholder="First name" [(ngModel)]="selectedAthlete.firstName" required>
       </div>
     </div>
 
-    <div class="form-group row" *ngIf="isNewAthlete">
+    <div class="form-group row">
       <label for="lastName" class="col-md-4 col-form-label" style="text-align: right">Lastname:</label>
       <div class="input-group col-md-8">
         <input id="lastName" name="lastName" class="form-control" placeholder="First name" [(ngModel)]="selectedAthlete.lastName" required>
       </div>
     </div>
 
-    <div class="form-group row" *ngIf="isNewAthlete">
+    <div class="form-group row">
       <label for="dob" class="col-md-4 col-form-label" style="text-align: right">Date of birth:</label>
       <div class="input-group col-md-8">
         <ngb-datepicker #dp [minDate]="{year: 1930, month: 1, day: 1}" [(ngModel)]="athleteDOB" name="dateofbirth" (navigate)="date = $event.next"></ngb-datepicker>

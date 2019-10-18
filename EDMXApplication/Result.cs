@@ -14,9 +14,9 @@ namespace Entities
     
     public partial class Result
     {
-        public decimal Result_Id { get; set; }
-        public decimal Result_Race_Id { get; set; }
-        public decimal Result_Athlete_Id { get; set; }
+        public int Result_Id { get; set; }
+        public int Result_Race_Id { get; set; }
+        public int Result_Athlete_Id { get; set; }
         public Nullable<System.TimeSpan> Time_Swim { get; set; }
         public Nullable<System.TimeSpan> Time_T1 { get; set; }
         public Nullable<System.TimeSpan> Time_Bike { get; set; }
@@ -25,7 +25,7 @@ namespace Entities
         public Nullable<System.TimeSpan> Time_Total { get; set; }
         public string Team { get; set; }
         public string City { get; set; }
-        public Nullable<decimal> Bib { get; set; }
+        public Nullable<int> Bib { get; set; }
     
         public virtual Athlete Athlete { get; set; }
         public virtual Race Race { get; set; }

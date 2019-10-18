@@ -20,7 +20,7 @@ namespace Entities
             this.Races = new HashSet<Race>();
         }
     
-        public decimal Format_id { get; set; }
+        public int Format_id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

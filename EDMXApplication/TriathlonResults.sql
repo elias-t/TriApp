@@ -50,7 +50,7 @@ GO
 
 -- Creating table 'Athletes'
 CREATE TABLE [dbo].[Athletes] (
-    [Athlete_id] decimal(18,0) IDENTITY(1,1)  NOT NULL,
+    [Athlete_id] int IDENTITY(1,1)  NOT NULL,
     [FirstName] nvarchar(50)  NOT NULL,
     [LastName] nvarchar(50)  NOT NULL,
     [DOB] datetime  NOT NULL
@@ -59,25 +59,25 @@ GO
 
 -- Creating table 'Formats'
 CREATE TABLE [dbo].[Formats] (
-    [Format_id] decimal(18,0) IDENTITY(1,1)  NOT NULL,
+    [Format_id] int IDENTITY(1,1)  NOT NULL,
     [Name] nvarchar(50)  NOT NULL
 );
 GO
 
 -- Creating table 'Races'
 CREATE TABLE [dbo].[Races] (
-    [Race_id] decimal(18,0) IDENTITY(1,1) NOT NULL,
+    [Race_id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
-    [Race_Format_id] decimal(18,0)  NOT NULL,
-    [Year] decimal(18,0)  NOT NULL
+    [Race_Format_id] int  NOT NULL,
+    [Year] int  NOT NULL
 );
 GO
 
 -- Creating table 'Results'
 CREATE TABLE [dbo].[Results] (
-    [Result_Id] decimal(18,0) IDENTITY(1,1)  NOT NULL,
-    [Result_Race_Id] decimal(18,0)  NOT NULL,
-    [Result_Athlete_Id] decimal(18,0)  NOT NULL,
+    [Result_Id] int IDENTITY(1,1)  NOT NULL,
+    [Result_Race_Id] int  NOT NULL,
+    [Result_Athlete_Id] int  NOT NULL,
     [Time_Swim] time  NULL,
     [Time_T1] time  NULL,
     [Time_Bike] time  NULL,
@@ -86,7 +86,7 @@ CREATE TABLE [dbo].[Results] (
     [Time_Total] time  NULL,
     [Team] nvarchar(50)  NULL,
     [City] nvarchar(50)  NULL,
-    [Bib] decimal(18,0)  NULL
+    [Bib] int  NULL
 );
 GO
 

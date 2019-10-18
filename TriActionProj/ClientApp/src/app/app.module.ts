@@ -14,6 +14,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { UniqueRacePipe } from './unique-race.pipe';
 import { AthleteModalComponent } from './athlete-modal/athlete-modal.component';
 import { DatePipe } from '@angular/common';
+import { ResultsModalComponent } from './results-modal/results-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DatePipe } from '@angular/common';
     RaceModalComponent,
     ConfirmationDialogComponent,
     UniqueRacePipe,
-    AthleteModalComponent
+    AthleteModalComponent,
+    ResultsModalComponent
   ],
   imports: [
     BrowserModule,

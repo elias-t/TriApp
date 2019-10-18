@@ -20,6 +20,14 @@ export class RaceApiService {
     return this.http.get<any[]>(`${this.globals.baseURL}api/Triathlon/GetRaces`);
   }
 
+  getAthletes() {
+    return this.http.get<any[]>(`${this.globals.baseURL}api/Triathlon/GetAthletes`);
+  }
+
+  getAthletesForRace(raceId: number) {
+    return this.http.get<any[]>(`${this.globals.baseURL}api/Triathlon/GetAthletesForRace/${raceId}`);
+  }
+
   getDistinctRaces() {
     return this.http.get<any[]>(`${this.globals.baseURL}api/Triathlon/GetDistinctRaces`);
   }
@@ -30,14 +38,12 @@ export class RaceApiService {
 
   addRace(race : Race) {
     const addRaceURL = `${this.globals.baseURL}api/Triathlon/AddRace`;
-    //const obj = JSON.stringify({ race });
     const obj = race;
     return this.http.post(addRaceURL, obj);
   }
 
   updateRace(race: Race) {
     const updateRaceURL = `${this.globals.baseURL}api/Triathlon/UpdateRace`;
-    //const obj = JSON.stringify({ race });
     const obj = race;
     return this.http.post(updateRaceURL, obj);
   }
@@ -47,9 +53,8 @@ export class RaceApiService {
     return this.http.delete(deleteRaceURL);
   }
 
-  addAthlete(athlete: Athlete) {
-    const addAthleteURL = `${this.globals.baseURL}api/Triathlon/AddAthlete`;
-    //const obj = JSON.stringify({ race });
+  addAthlete(athlete: Athlete, raceId: number) {
+    const addAthleteURL = `${this.globals.baseURL}api/Triathlon/AddAthlete/${raceId}`;
     const obj = athlete;
     return this.http.post(addAthleteURL, obj);
   }

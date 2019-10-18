@@ -28,7 +28,7 @@ namespace TriCalcAngular.Models
 
                 entity.Property(e => e.Athlete_id)
                     .HasColumnName("Athlete_id")
-                    .HasColumnType("numeric(18, 0)");
+                    .HasColumnType("int");
 
                 entity.Property(e => e.DOB).HasColumnType("datetime");
 
@@ -47,7 +47,7 @@ namespace TriCalcAngular.Models
 
                 entity.Property(e => e.Format_id)
                     .HasColumnName("Format_id")
-                    .HasColumnType("numeric(18, 0)");
+                    .HasColumnType("int");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -60,7 +60,7 @@ namespace TriCalcAngular.Models
 
                 entity.Property(e => e.Race_id)
                     .HasColumnName("Race_id")
-                    .HasColumnType("numeric(18, 0)");
+                    .HasColumnType("int");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -68,7 +68,7 @@ namespace TriCalcAngular.Models
 
                 entity.Property(e => e.Race_Format_id)
                     .HasColumnName("Race_Format_id")
-                    .HasColumnType("numeric(18, 0)");
+                    .HasColumnType("int");
 
                 entity.HasOne(d => d.Format)
                     .WithMany(p => p.Races)
@@ -76,7 +76,7 @@ namespace TriCalcAngular.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Races_Races");
 
-                entity.Property(e => e.Year).HasColumnType("numeric(18, 0)");
+                entity.Property(e => e.Year).HasColumnType("int");
             });
 
             modelBuilder.Entity<Result>(entity =>
@@ -85,15 +85,15 @@ namespace TriCalcAngular.Models
 
                 entity.Property(e => e.Result_Id)
                     .HasColumnName("Result_Id")
-                    .HasColumnType("numeric(18, 0)");
+                    .HasColumnType("int");
 
                 entity.Property(e => e.Result_Athlete_Id)
                     .HasColumnName("Result_Athlete_Id")
-                    .HasColumnType("numeric(18, 0)");
+                    .HasColumnType("int");
 
                 entity.Property(e => e.Result_Race_Id)
                     .HasColumnName("Result_Race_Id")
-                    .HasColumnType("numeric(18, 0)");
+                    .HasColumnType("int");
 
                 entity.Property(e => e.Time_Bike).HasColumnName("Time_Bike");
 

@@ -16,5 +16,8 @@ namespace TriCalcAngular.Models
         int DeleteRace(int raceid);
         IEnumerable<string> GetDistinctRaces();
         int AddAthlete(AthleteDTO athlete);
+        IEnumerable<AthleteDTO> GetAthletes();
+        int AddAthleteToRace(int athleteId, int raceId);
+        IEnumerable<AthleteDTO> GetAthletesForRace(int raceid);
     }
 }

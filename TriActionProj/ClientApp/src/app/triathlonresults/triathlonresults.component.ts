@@ -5,10 +5,12 @@ import { RaceApiService } from '../services/race-api.service';
 import { RaceModalComponent } from '../race-modal/race-modal.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { AthleteModalComponent } from '../athlete-modal/athlete-modal.component';
+import { ResultsModalComponent } from '../results-modal/results-modal.component';
 import { Globals } from '../globals';
 import { Race } from '../models/race';
 import { Format } from '../models/format';
 import { Athlete } from '../models/athlete';
+import { Result } from '../models/result';
 
 @Component({
   selector: 'app-triathlonresults',
@@ -110,14 +112,15 @@ import { Athlete } from '../models/athlete';
     });
   }
 
-  public addAthlete() {
+  public addAthlete(race: Race) {
     const modalRef = this.modal.open(AthleteModalComponent, { size: 'lg', centered: true });
+    modalRef.componentInstance.modalRace = race;
     modalRef.componentInstance.selectedAthlete = new Athlete();
     modalRef.result.then((result) => {
-      console.log('Add New athlete: ' + result);
+      console.log('Add athlete to race: ' + result);
       console.log('Results : ' + result);
-      this.api.addAthlete(result).subscribe((data: Athlete) => {
-        //window.location.reload();
+      this.api.addAthlete(result, +race.raceId).subscribe((data: Athlete) => {
+        window.location.reload();
       });
     }, reason => {
       console.log(`Dismissed reason: ${reason}`);

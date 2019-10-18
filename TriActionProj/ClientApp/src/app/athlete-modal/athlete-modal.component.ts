@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { Athlete } from '../models/athlete';
-import { DatePipe } from '@angular/common';
+import { Race } from '../models/race';
+import { RaceApiService } from '../services/race-api.service';
 
 @Component({
   selector: 'app-athlete-modal',
@@ -10,13 +11,20 @@ import { DatePipe } from '@angular/common';
 })
 export class AthleteModalComponent implements OnInit {
 
+  public athletes: Athlete[] = [];
   public selectedAthlete: Athlete;
   public athleteDOB: NgbDateStruct;
+  public isNewAthlete: boolean;
+  public modalRace: Race;
+  modelAthlete: string;
 
-  constructor(public activeModal: NgbActiveModal, private parserFormatter: NgbDateParserFormatter) {
+  constructor(private api: RaceApiService, public activeModal: NgbActiveModal, private parserFormatter: NgbDateParserFormatter) {
   }
 
   ngOnInit() {
+    this.api.getAthletesForRace(+this.modalRace.raceId).subscribe(data => {
+      this.athletes = data;
+    });
   }
 
   btnClose_Clicked() {
@@ -24,8 +32,20 @@ export class AthleteModalComponent implements OnInit {
   }
 
   btnSave_Clicked() {
-    this.selectedAthlete.dob = this.parserFormatter.format(this.athleteDOB);
-    this.activeModal.close(this.selectedAthlete);
+    if (this.isNewAthlete) {
+      this.selectedAthlete.dob = this.parserFormatter.format(this.athleteDOB);
+      this.activeModal.close(this.selectedAthlete);
+    }
+    else {
+      this.selectedAthlete = this.athletes.filter((item) => item.athleteId == this.modelAthlete)[0];
+      this.activeModal.close(this.selectedAthlete);
+    }
   }
 
+  checkIfNewAthlete(athleteVal: any) {
+    if (athleteVal == "Add new athlete")
+      this.isNewAthlete = true;
+    else
+      this.isNewAthlete = false;
+  }
 }

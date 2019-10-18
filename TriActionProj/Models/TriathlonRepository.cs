@@ -96,6 +96,25 @@ namespace TriCalcAngular.Models
             return _mapper.Map<IEnumerable<AthleteDTO>>(results).ToList();
         }
 
+        public IEnumerable<AthleteDTO> GetAthletesForRace(int raceid)
+        {
+            var results = (from at in _context.Athletes
+                          join re in _context.Results
+                          on at.Athlete_id equals re.Result_Athlete_Id into ar
+                          from subresults in ar.DefaultIfEmpty()
+                          where subresults.Result_Race_Id != raceid
+                          select new Athlete
+                          {
+                              Athlete_id = at.Athlete_id,
+                              FirstName = at.FirstName,
+                              LastName = at.LastName,
+                              DOB = at.DOB,
+                              //ResultRaceId = (subresults.Result_Race_Id == 0) ? 0 : subresults.Result_Race_Id
+
+                          }).ToList();
+            return _mapper.Map<IEnumerable<AthleteDTO>>(results).ToList();
+        }
+
         public int AddRace(RaceDTO raceDTO)
         {
             //var race = new Race() { Race_Format_id = raceDTO.RaceFormatId, Name = raceDTO.Name, Year = raceDTO.Year };
@@ -174,6 +193,29 @@ namespace TriCalcAngular.Models
         {
             var athlete = _mapper.Map<AthleteDTO, Athlete>(athleteDTO);
             _context.Athletes.Add(athlete);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    int result = _context.SaveChanges();
+                    transaction.Commit();
+                    int newAthleteId = (int)athlete.Athlete_id;
+                    return newAthleteId;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    _context.Database.CloseConnection();
+                }
+            }
+        }
+
+        public int AddAthleteToRace(int athleteId, int raceId)
+        {
+            _context.Results.Add(new Result() { Result_Race_Id = raceId, Result_Athlete_Id = athleteId });
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
