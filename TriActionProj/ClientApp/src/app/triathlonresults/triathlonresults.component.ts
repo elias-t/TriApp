@@ -5,12 +5,12 @@ import { RaceApiService } from '../services/race-api.service';
 import { RaceModalComponent } from '../race-modal/race-modal.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { AthleteModalComponent } from '../athlete-modal/athlete-modal.component';
-import { ResultsModalComponent } from '../results-modal/results-modal.component';
+
 import { Globals } from '../globals';
 import { Race } from '../models/race';
 import { Format } from '../models/format';
 import { Athlete } from '../models/athlete';
-import { Result } from '../models/result';
+
 
 @Component({
   selector: 'app-triathlonresults',

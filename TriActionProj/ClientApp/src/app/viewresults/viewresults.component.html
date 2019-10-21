@@ -17,6 +17,9 @@
         <th>T2</th>
         <th>Run</th>
         <th>Total time</th>
+        <!--<th>Add result</th>-->
+        <th>Update result</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +33,9 @@
         <td>{{ raceresult.timeT2 }}</td>
         <td>{{ raceresult.timeRun }}</td>
         <td>{{ raceresult.timeTotal }}</td>
+        <!--<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addResult()">Add result</button></td>-->
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="updateResult(raceresult)">Update result</button></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="details()">Details</button></td>
       </tr>
     </tbody>
   </table>

@@ -136,5 +136,20 @@ namespace TriCalcAngular.Controllers
                 return BadRequest(e);
             }
         }
+
+        [HttpPost("api/Triathlon/UpdateResult")]
+        public ActionResult UpdateResult([FromBody]ResultDTO result)
+        {
+            try
+            {
+                _model.UpdateResult(result);
+                return CreatedAtAction("Existing result updated", result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+        }
     }
 }

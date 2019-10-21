@@ -235,6 +235,35 @@ namespace TriCalcAngular.Models
             }
         }
 
+        public int UpdateResult(ResultDTO resultDTO)
+        {
+            var currentResult = _context.Results.SingleOrDefault(r => r.Result_Id == resultDTO.ResultId);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    //edit first name, last name on separate query
+                    currentResult.Time_Swim = resultDTO.TimeSwim;
+                    currentResult.Time_T1 = resultDTO.TimeT1;
+                    currentResult.Time_Bike = resultDTO.TimeBike;
+                    currentResult.Time_T2 = resultDTO.TimeT2;
+                    currentResult.Time_Run = resultDTO.TimeRun;
+                    currentResult.Time_Total = resultDTO.TimeTotal;
+                    int result = _context.SaveChanges();
+                    transaction.Commit();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    _context.Database.CloseConnection();
+                }
+            }
+        }
+
         private bool _disposed;
 
         protected virtual void Dispose(bool disposing)

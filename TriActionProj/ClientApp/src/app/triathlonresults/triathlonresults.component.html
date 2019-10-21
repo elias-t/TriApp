@@ -32,7 +32,7 @@
         <th>Format</th>
         <th>Year</th>
         <th>Results</th>
-        <th>Edit</th>
+        <th>Update</th>
         <th>Delete</th>
         <th>Add athlete</th>
         <!--<th>Add result</th>-->
@@ -44,7 +44,7 @@
         <td>{{ race.raceFormatName }}</td>
         <td>{{ race.year }}</td>
         <td><a [class.disabled]="!hasResults(race.resultsCount)" [routerLink]="['../viewresults', race.raceId]">View results</a></td>
-        <td><button class="btn btn-primary" (click)="updateRace(race)">Edit</button></td>
+        <td><button class="btn btn-primary" (click)="updateRace(race)">Update</button></td>
         <td><button *ngIf="!hasResults(race.resultsCount)" class="btn btn-primary" (click)="deleteRace(race)">Delete</button></td>
         <!--<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addResult()">Add result</button></td>-->
         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addAthlete(race)">Add athlete</button></td>

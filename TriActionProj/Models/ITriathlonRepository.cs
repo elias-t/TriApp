@@ -19,5 +19,6 @@ namespace TriCalcAngular.Models
         IEnumerable<AthleteDTO> GetAthletes();
         int AddAthleteToRace(int athleteId, int raceId);
         IEnumerable<AthleteDTO> GetAthletesForRace(int raceid);
+        int UpdateResult(ResultDTO result);
     }
 }

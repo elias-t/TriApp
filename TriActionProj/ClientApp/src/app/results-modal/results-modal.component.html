@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-title">Add result</h4>
+  <h4 class="modal-title" id="modal-title">Update result</h4>
 </div>
 
 <div class="modal-body">
@@ -7,21 +7,56 @@
     <div class="form-group row">
       <label for="firstName" class="col-md-4 col-form-label" style="text-align: right">Firstname:</label>
       <div class="input-group col-md-8">
-        <input id="firstName" name="firstName" class="form-control" placeholder="First name" [(ngModel)]="selectedAthlete.firstName" required>
+        <input id="firstName" name="firstName" class="form-control" placeholder="First name" [(ngModel)]="selectedResult.resultAthlete.firstName" required>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="lastName" class="col-md-4 col-form-label" style="text-align: right">Lastname:</label>
       <div class="input-group col-md-8">
-        <input id="lastName" name="lastName" class="form-control" placeholder="First name" [(ngModel)]="selectedAthlete.lastName" required>
+        <input id="lastName" name="lastName" class="form-control" placeholder="First name" [(ngModel)]="selectedResult.resultAthlete.lastName" required>
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="dob" class="col-md-4 col-form-label" style="text-align: right">Date of birth:</label>
+      <label for="swim" class="col-md-4 col-form-label" style="text-align:right; padding-top:10px">Swim:</label>
       <div class="input-group col-md-8">
-        <ngb-datepicker #dp [minDate]="{year: 1930, month: 1, day: 1}" [(ngModel)]="athleteDOB" name="dateofbirth" (navigate)="date = $event.next"></ngb-datepicker>
+        <ngb-timepicker [(ngModel)]="selectedResult.timeSwim" [seconds]="true" [spinners]="false" name="Swim Time"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="t1" class="col-md-4 col-form-label" style="text-align:right; padding-top:10px">T1:</label>
+      <div class="input-group col-md-8">
+        <ngb-timepicker [(ngModel)]="selectedResult.timeT1" [seconds]="true" [spinners]="false" name="T1 Time"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="bike" class="col-md-4 col-form-label" style="text-align:right; padding-top:10px">Bike:</label>
+      <div class="input-group col-md-8">
+        <ngb-timepicker [(ngModel)]="selectedResult.timeBike" [seconds]="true" [spinners]="false" name="Bike Time"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="t2" class="col-md-4 col-form-label" style="text-align:right; padding-top:10px">T2:</label>
+      <div class="input-group col-md-8">
+        <ngb-timepicker [(ngModel)]="selectedResult.timeT2" [seconds]="true" [spinners]="false" name="T2 Time"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="run" class="col-md-4 col-form-label" style="text-align:right; padding-top:10px">Run:</label>
+      <div class="input-group col-md-8">
+        <ngb-timepicker [(ngModel)]="selectedResult.timeRun" [seconds]="true" [spinners]="false" name="Run Time"></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="total" class="col-md-4 col-form-label" style="text-align:right; padding-top:10px">Total:</label>
+      <div class="input-group col-md-8">
+        <ngb-timepicker [(ngModel)]="selectedResult.timeTotal" [seconds]="true" [spinners]="false" name="Total Time"></ngb-timepicker>
       </div>
     </div>
 

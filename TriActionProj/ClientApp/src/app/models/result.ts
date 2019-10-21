@@ -1,3 +1,6 @@
+import { Athlete } from './athlete';
+import { Race } from './race';
+
 export class Result {
   resultId: number;
   timeSwim: string;
@@ -6,6 +9,6 @@ export class Result {
   timeT2: string;
   timeRun: string;
   timeTotal: string;
-  resultAthlete: object;
-  resultRace: object;
+  resultAthlete: Athlete;
+  resultRace: Race;
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { UniqueRacePipe } from './unique-race.pipe';
 import { AthleteModalComponent } from './athlete-modal/athlete-modal.component';
 import { DatePipe } from '@angular/common';
 import { ResultsModalComponent } from './results-modal/results-modal.component';
+import { NgbTimeStringAdapterService } from './services/ngb-time-string-adapter.service';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,8 @@ import { ResultsModalComponent } from './results-modal/results-modal.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [DatePipe],
-  entryComponents: [RaceModalComponent, ConfirmationDialogComponent, AthleteModalComponent],
+  providers: [DatePipe, { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapterService }],
+  entryComponents: [RaceModalComponent, ConfirmationDialogComponent, AthleteModalComponent, ResultsModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

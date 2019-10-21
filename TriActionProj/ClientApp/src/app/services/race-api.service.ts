@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { Globals } from '../globals';
 import { Race } from '../models/race';
 import { Athlete } from '../models/athlete';
+import { Result } from '../models/result';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RaceApiService {
-
+    
   constructor(private http: HttpClient, private globals: Globals) { }
 
   getFormats() {
@@ -57,5 +58,11 @@ export class RaceApiService {
     const addAthleteURL = `${this.globals.baseURL}api/Triathlon/AddAthlete/${raceId}`;
     const obj = athlete;
     return this.http.post(addAthleteURL, obj);
+  }
+
+  updateResult(result: Result): any {
+    const updateResultURL = `${this.globals.baseURL}api/Triathlon/UpdateResult`;
+    const obj = result;
+    return this.http.post(updateResultURL, obj);
   }
 }
