@@ -119,8 +119,8 @@ namespace TriCalcAngular.Controllers
 
         }
 
-        [HttpPost("api/Triathlon/AddAthlete/{raceid}")]
-        public ActionResult AddAthlete([FromBody]AthleteDTO athlete, int raceId)
+        [HttpPost("api/Triathlon/AddAthlete/{raceid}/{city?}/{team?}/{bib?}")]
+        public ActionResult AddAthlete([FromBody]AthleteDTO athlete, int raceId, string city, string team, string bib)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace TriCalcAngular.Controllers
                 if (athlete.AthleteId == 0)
                     athleteId = _model.AddAthlete(athlete);
                 //add athlete to race, i.e. add result
-                _model.AddAthleteToRace(athleteId, raceId);
+                _model.AddAthleteToRace(athleteId, raceId, city, team, bib);
                 return CreatedAtAction("New athlete added", athlete);
             }
             catch (Exception e)
@@ -144,6 +144,21 @@ namespace TriCalcAngular.Controllers
             {
                 _model.UpdateResult(result);
                 return CreatedAtAction("Existing result updated", result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+
+        }
+
+        [HttpDelete("api/Triathlon/DeleteResult/{resultid}")]
+        public ActionResult DeleteResult(int resultid)
+        {
+            try
+            {
+                _model.DeleteResult(resultid);
+                return CreatedAtAction("Existing result deleted", resultid);
             }
             catch (Exception e)
             {

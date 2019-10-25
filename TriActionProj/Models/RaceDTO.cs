@@ -11,5 +11,10 @@ namespace TriCalcAngular.Models
         public int Year { get; set; }
         public string RaceFormatName { get; set; }
         public int ResultsCount { get; set; }
+
+
+        public decimal DistanceSwim { get; set; }
+        public decimal DistanceBike { get; set; }
+        public decimal DistanceRun { get; set; }
     }
 }

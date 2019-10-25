@@ -20,6 +20,9 @@
           </Key>
           <Property Name="Format_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Distance_Swim" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Distance_Bike" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Distance_Run" Type="decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Races">
           <Key>
@@ -140,6 +143,9 @@
           <Property Name="Format_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Races" Relationship="TriathlonResultsModel.FK_Races_Formats" FromRole="Format" ToRole="Race" />
+          <Property Name="Distance_Swim" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Distance_Bike" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Distance_Run" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
         </EntityType>
         <EntityType Name="Race">
           <Key>
@@ -226,6 +232,9 @@
           <EntitySetMapping Name="Formats">
             <EntityTypeMapping TypeName="TriathlonResultsModel.Format">
               <MappingFragment StoreEntitySet="Formats">
+                <ScalarProperty Name="Distance_Run" ColumnName="Distance_Run" />
+                <ScalarProperty Name="Distance_Bike" ColumnName="Distance_Bike" />
+                <ScalarProperty Name="Distance_Swim" ColumnName="Distance_Swim" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Format_id" ColumnName="Format_id" />
               </MappingFragment>

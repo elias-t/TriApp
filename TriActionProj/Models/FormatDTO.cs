@@ -14,6 +14,11 @@ namespace TriCalcAngular.Models
         public int FormatId { get; set; }
         public string Name { get; set; }
 
+        public decimal DistanceSwim { get; set; }
+        public decimal DistanceBike { get; set; }
+        public decimal DistanceRun { get; set; }
+
+
         public ICollection<RaceDTO> Races { get; set; }
         public ICollection<ResultDTO> Results { get; set; }
     }

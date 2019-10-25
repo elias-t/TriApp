@@ -22,6 +22,9 @@ namespace Entities
     
         public int Format_id { get; set; }
         public string Name { get; set; }
+        public decimal Distance_Swim { get; set; }
+        public decimal Distance_Bike { get; set; }
+        public decimal Distance_Run { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Race> Races { get; set; }

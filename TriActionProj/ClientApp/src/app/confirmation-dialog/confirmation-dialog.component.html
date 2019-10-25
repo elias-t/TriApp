@@ -4,12 +4,16 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-
 <div class="modal-body">
   <h6>{{message}}</h6>
+  <p>{{detailsMessage}}</p>
 </div>
 
-<div class="modal-footer">
+<div class="modal-footer" *ngIf="isDelete">
   <button type="button" class="btn btn-outline-dark" (click)="confirmationDialog.close('YES')">Yes</button>
   <button type="button" class="btn btn-outline-dark" (click)="confirmationDialog.dismiss('NO')">No</button>
+</div>
+
+<div class="modal-footer" *ngIf="!isDelete">
+  <button type="button" class="btn btn-outline-dark" (click)="confirmationDialog.dismiss('Close')">Close</button>
 </div>

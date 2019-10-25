@@ -13,7 +13,6 @@ import { RaceModalComponent } from './race-modal/race-modal.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { UniqueRacePipe } from './unique-race.pipe';
 import { AthleteModalComponent } from './athlete-modal/athlete-modal.component';
-import { DatePipe } from '@angular/common';
 import { ResultsModalComponent } from './results-modal/results-modal.component';
 import { NgbTimeStringAdapterService } from './services/ngb-time-string-adapter.service';
 
@@ -37,7 +36,7 @@ import { NgbTimeStringAdapterService } from './services/ngb-time-string-adapter.
     FormsModule,
     HttpClientModule
   ],
-  providers: [DatePipe, { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapterService }],
+  providers: [{ provide: NgbTimeAdapter, useClass: NgbTimeStringAdapterService }],
   entryComponents: [RaceModalComponent, ConfirmationDialogComponent, AthleteModalComponent, ResultsModalComponent],
   bootstrap: [AppComponent]
 })

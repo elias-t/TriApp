@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 
 import { Format } from '../models/format';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-triathloncalculator',
@@ -8,7 +12,14 @@ import { Format } from '../models/format';
   styleUrls: ['./triathloncalculator.component.css']
 })
 
-export class TriathloncalculatorComponent {
+export class TriathloncalculatorComponent implements OnInit{
+
+  ngOnInit(){
+  }
+
+  constructor() {
+  }
+
   public totalTime: number = 0;
   public totalTimeString: string = "";
   public selectRace = "Select event";
@@ -49,6 +60,24 @@ export class TriathloncalculatorComponent {
     var fhours = Math.floor(minutes / 60);
     var fminutes = Math.floor(minutes % 60);
     this.totalTimeString = fhours + " hours, " + fminutes + " minutes, " + fseconds + " seconds";
+  }
+
+  public calculatePace(discipline: string, time: string, distance: number): string {
+    //distance in km
+    var result = "";
+    if (discipline == "swim") {
+      var seconds = (parseInt(time.split(':')[0]) * 3600 + parseInt(time.split(':')[1]) * 60 + parseInt(time.split(':')[2])) / (distance * 10);
+      result = "" + ((Math.trunc(seconds / 60) < 10) ? "0" + Math.trunc(seconds / 60) : Math.trunc(seconds / 60)) + ":" + "" + (seconds % 60 < 10 ? "0" + (seconds % 60).toFixed(0) : (seconds % 60).toFixed(0));
+    }
+    else if (discipline == "bike") {
+      var speed = ((distance * 3600) / ((parseInt(time.split(':')[0]) * 3600 + parseInt(time.split(':')[1]) * 60 + parseInt(time.split(':')[2])))).toFixed(2);
+      result = "" + speed;
+    }
+    else if (discipline == "run") {
+      seconds = ((parseInt(time.split(':')[0]) * 3600 + parseInt(time.split(':')[1]) * 60 + parseInt(time.split(':')[2]))) / (distance);
+      result = "" + (Math.trunc(seconds / 60) < 10 ? "0" + Math.trunc(seconds / 60) : Math.trunc(seconds / 60)) + ":" + "" + (seconds % 60 < 10 ? "0" + (seconds % 60).toFixed(0) : (seconds % 60).toFixed(0));
+    }
+    return result;
   }
 
 }

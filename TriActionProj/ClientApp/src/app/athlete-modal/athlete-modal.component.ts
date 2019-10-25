@@ -16,6 +16,9 @@ export class AthleteModalComponent implements OnInit {
   public athleteDOB: NgbDateStruct;
   public isNewAthlete: boolean;
   public modalRace: Race;
+  city: string ="";
+  team: string = "";
+  bib: string = "";
   modelAthlete: string;
 
   constructor(private api: RaceApiService, public activeModal: NgbActiveModal, private parserFormatter: NgbDateParserFormatter) {
@@ -34,12 +37,14 @@ export class AthleteModalComponent implements OnInit {
   btnSave_Clicked() {
     if (this.isNewAthlete) {
       this.selectedAthlete.dob = this.parserFormatter.format(this.athleteDOB);
-      this.activeModal.close(this.selectedAthlete);
     }
     else {
       this.selectedAthlete = this.athletes.filter((item) => item.athleteId == this.modelAthlete)[0];
-      this.activeModal.close(this.selectedAthlete);
     }
+    this.selectedAthlete.city = this.city;
+    this.selectedAthlete.team = this.team;
+    this.selectedAthlete.bib = this.bib;
+    this.activeModal.close(this.selectedAthlete);
   }
 
   checkIfNewAthlete(athleteVal: any) {

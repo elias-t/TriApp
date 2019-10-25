@@ -10,6 +10,8 @@ export class ConfirmationDialogComponent implements OnInit {
 
   public modalTitle: string;
   public message: string;
+  public detailsMessage: string;
+  
 
   constructor(public confirmationDialog: NgbActiveModal) { }
 

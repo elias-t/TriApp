@@ -60,7 +60,10 @@ GO
 -- Creating table 'Formats'
 CREATE TABLE [dbo].[Formats] (
     [Format_id] int IDENTITY(1,1)  NOT NULL,
-    [Name] nvarchar(50)  NOT NULL
+    [Name] nvarchar(50)  NOT NULL,
+	[Distance_Swim] decimal(5,2) NOT NULL,
+	[Distance_Bike] decimal(5,2) NOT NULL,
+	[Distance_Run] decimal(5,2) NOT NULL,
 );
 GO
 
@@ -177,10 +180,10 @@ GO
 
 -- Add rows.
 --Formats
-INSERT INTO Formats(Name) VALUES('Sprint')
-INSERT INTO Formats(Name) VALUES('Olympic')
-INSERT INTO Formats(Name) VALUES('Half Ironman')
-INSERT INTO Formats(Name) VALUES('Ironman')
+INSERT INTO Formats(Name, Distance_Swim, Distance_Bike, Distance_Run) VALUES('Sprint', 0.75, 20, 5)
+INSERT INTO Formats(Name, Distance_Swim, Distance_Bike, Distance_Run) VALUES('Olympic', 1.5, 40, 10)
+INSERT INTO Formats(Name, Distance_Swim, Distance_Bike, Distance_Run) VALUES('Half Ironman', 1.9, 90, 21.1)
+INSERT INTO Formats(Name, Distance_Swim, Distance_Bike, Distance_Run) VALUES('Ironman', 3.8, 180, 42.2)
 --Races
 INSERT INTO Races(Name,Race_Format_id, Year) VALUES('Copenhagen',4,2019)
 INSERT INTO Races(Name,Race_Format_id, Year) VALUES('Talin',4,	2018)

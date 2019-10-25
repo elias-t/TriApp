@@ -5,4 +5,7 @@ export class Race {
   year: number;
   raceFormatName: string;
   resultsCount: number;
+  distanceSwim: number;
+  distanceBike: number;
+  distanceRun: number;
 }

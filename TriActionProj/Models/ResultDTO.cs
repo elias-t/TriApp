@@ -16,6 +16,8 @@ namespace TriCalcAngular.Models
         public TimeSpan? TimeTotal { get; set; }
         public AthleteDTO ResultAthlete { get; set; }
         public RaceDTO ResultRace { get; set; }
-        
+        public string City { get; set; }
+        public string Team { get; set; }
+        public int Bib { get; set; }
     }
 }

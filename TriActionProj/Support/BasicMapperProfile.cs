@@ -16,11 +16,13 @@ namespace TriCalcAngular.Support
                 .ForMember(vm => vm.RaceFormatName, map => map.Ignore())
                 .ForMember(vm => vm.ResultsCount, map => map.MapFrom(m => m.Results.Count))
 
-
                 ;
             CreateMap<Format, FormatDTO>()
                 .ForMember(vm => vm.FormatId, map => map.MapFrom(m => m.Format_id))
                 .ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name))
+                .ForMember(vm => vm.DistanceSwim, map => map.MapFrom(m => m.Distance_Swim))
+                .ForMember(vm => vm.DistanceBike, map => map.MapFrom(m => m.Distance_Bike))
+                .ForMember(vm => vm.DistanceRun, map => map.MapFrom(m => m.Distance_Run))
                 .ForMember(vm => vm.Results, map => map.Ignore());
                 
             CreateMap<Athlete, AthleteDTO>()
@@ -42,6 +44,9 @@ namespace TriCalcAngular.Support
                 .ForMember(vm => vm.TimeTotal, map => map.MapFrom(m => m.Time_Total))
                 .ForMember(vm => vm.ResultAthleteId, map => map.MapFrom(m => m.Result_Athlete_Id))
                 .ForMember(vm => vm.ResultRaceId, map => map.MapFrom(m => m.Result_Race_Id))
+                .ForMember(vm => vm.City, map => map.MapFrom(m => m.City))
+                .ForMember(vm => vm.Team, map => map.MapFrom(m => m.Team))
+                .ForMember(vm => vm.Bib, map => map.MapFrom(m => m.Bib))
                 ;
 
             //other way round

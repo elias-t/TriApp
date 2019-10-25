@@ -45,7 +45,10 @@ namespace TriCalcAngular.Models
                                Year = r.Year,
                                RaceFormatName = f.Name,
                                RaceFormatId = r.RaceFormatId,
-                               ResultsCount = r.ResultsCount
+                               ResultsCount = r.ResultsCount,
+                               DistanceSwim = f.DistanceSwim,
+                               DistanceBike = f.DistanceBike,
+                               DistanceRun = f.DistanceRun,
                            }).ToList();
             return mappedRaces;
         }
@@ -60,7 +63,7 @@ namespace TriCalcAngular.Models
         {
             var mappedRaces = GetRaces();
             var mappedAthletes = GetAthletes();
-
+            var mappedFormats = GetFormats();
             var results = _context.Results.Where(r => r.Result_Race_Id == raceid);
             var mappedResults = _mapper.Map<IEnumerable<ResultDTO>>(results).ToList();
             mappedResults = (from r in mappedResults
@@ -71,15 +74,19 @@ namespace TriCalcAngular.Models
                              select new ResultDTO
                              {
                                  ResultId = r.ResultId,
-                                 ResultRace = new RaceDTO() { Name = ra.Name, RaceFormatName = ra.RaceFormatName, Year = ra.Year},
+                                 ResultRace = new RaceDTO() { Name = ra.Name, RaceFormatName = ra.RaceFormatName, Year = ra.Year,
+                                     DistanceSwim = ra.DistanceSwim, DistanceBike = ra.DistanceBike, DistanceRun = ra.DistanceRun },
                                  ResultAthlete = new AthleteDTO { FirstName = at.FirstName, LastName = at.LastName, DOB = at.DOB},
                                  TimeSwim = r.TimeSwim,
                                  TimeT1 = r.TimeT1,
                                  TimeBike = r.TimeBike, 
                                  TimeT2 = r.TimeT2,
                                  TimeRun = r.TimeRun,
-                                 TimeTotal = r.TimeTotal
-                             }).ToList();
+                                 TimeTotal = r.TimeTotal,
+                                 City = r.City,
+                                 Team = r.Team, 
+                                 Bib = r.Bib,
+                             }).OrderBy(rlts => rlts.TimeTotal).ToList();
 
 
             return mappedResults;
@@ -99,19 +106,18 @@ namespace TriCalcAngular.Models
         public IEnumerable<AthleteDTO> GetAthletesForRace(int raceid)
         {
             var results = (from at in _context.Athletes
-                          join re in _context.Results
-                          on at.Athlete_id equals re.Result_Athlete_Id into ar
-                          from subresults in ar.DefaultIfEmpty()
-                          where subresults.Result_Race_Id != raceid
-                          select new Athlete
-                          {
-                              Athlete_id = at.Athlete_id,
-                              FirstName = at.FirstName,
-                              LastName = at.LastName,
-                              DOB = at.DOB,
-                              //ResultRaceId = (subresults.Result_Race_Id == 0) ? 0 : subresults.Result_Race_Id
-
-                          }).ToList();
+                           join re in _context.Results
+                           on at.Athlete_id equals re.Result_Athlete_Id
+                           select new { at.Athlete_id, at.FirstName, at.LastName, at.DOB, re.Result_Athlete_Id } into att
+                           where att.Result_Athlete_Id != raceid
+                           group att by new { att.Athlete_id, att.FirstName, att.LastName, att.DOB} into g
+                           select new Athlete
+                           {
+                                   Athlete_id = g.Key.Athlete_id,
+                                   FirstName = g.Key.FirstName,
+                                   LastName = g.Key.LastName,
+                                   DOB = g.Key.DOB,
+                           }).ToList();
             return _mapper.Map<IEnumerable<AthleteDTO>>(results).ToList();
         }
 
@@ -213,9 +219,11 @@ namespace TriCalcAngular.Models
             }
         }
 
-        public int AddAthleteToRace(int athleteId, int raceId)
+        public int AddAthleteToRace(int athleteId, int raceId, string city, string team, string bib)
         {
-            _context.Results.Add(new Result() { Result_Race_Id = raceId, Result_Athlete_Id = athleteId });
+            var res = new Result() { Result_Race_Id = raceId, Result_Athlete_Id = athleteId, City = city, Bib = (bib == null) ? (int?)null : int.Parse(bib), Team = team };
+
+            _context.Results.Add(res);
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
@@ -249,6 +257,29 @@ namespace TriCalcAngular.Models
                     currentResult.Time_T2 = resultDTO.TimeT2;
                     currentResult.Time_Run = resultDTO.TimeRun;
                     currentResult.Time_Total = resultDTO.TimeTotal;
+                    int result = _context.SaveChanges();
+                    transaction.Commit();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                finally
+                {
+                    _context.Database.CloseConnection();
+                }
+            }
+        }
+
+        public int DeleteResult(int resultid)
+        {
+            var currentResult = _context.Results.SingleOrDefault(r => r.Result_Id == resultid);
+            using (var transaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    _context.Results.Remove(currentResult);
                     int result = _context.SaveChanges();
                     transaction.Commit();
                     return result;

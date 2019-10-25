@@ -49,6 +49,18 @@ namespace TriCalcAngular.Models
                     .HasColumnName("Format_id")
                     .HasColumnType("int");
 
+                entity.Property(e => e.Distance_Swim)
+                    .HasColumnName("Distance_Swim")
+                    .HasColumnType("decimal(5,2)");
+
+                entity.Property(e => e.Distance_Bike)
+                    .HasColumnName("Distance_Bike")
+                    .HasColumnType("decimal(5,2)");
+
+                entity.Property(e => e.Distance_Run)
+                    .HasColumnName("Distance_Run")
+                    .HasColumnType("decimal(5,2)");
+
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);

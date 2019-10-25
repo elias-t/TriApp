@@ -55,7 +55,7 @@ export class RaceApiService {
   }
 
   addAthlete(athlete: Athlete, raceId: number) {
-    const addAthleteURL = `${this.globals.baseURL}api/Triathlon/AddAthlete/${raceId}`;
+    const addAthleteURL = `${this.globals.baseURL}api/Triathlon/AddAthlete/${raceId}/${athlete.city}/${athlete.team}/${athlete.bib}`;
     const obj = athlete;
     return this.http.post(addAthleteURL, obj);
   }
@@ -64,5 +64,10 @@ export class RaceApiService {
     const updateResultURL = `${this.globals.baseURL}api/Triathlon/UpdateResult`;
     const obj = result;
     return this.http.post(updateResultURL, obj);
+  }
+
+  deleteResult(id: number) {
+    const deleteResultURL = `${this.globals.baseURL}api/Triathlon/DeleteResult/${id}`;
+    return this.http.delete(deleteResultURL);
   }
 }
