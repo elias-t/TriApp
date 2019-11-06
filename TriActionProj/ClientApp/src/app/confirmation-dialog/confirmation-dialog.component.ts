@@ -11,6 +11,7 @@ export class ConfirmationDialogComponent implements OnInit {
   public modalTitle: string;
   public message: string;
   public detailsMessage: string;
+  public isDelete: boolean;
   
 
   constructor(public confirmationDialog: NgbActiveModal) { }

@@ -16,10 +16,18 @@ namespace TestAngularProj
         public static MapperConfiguration mapperConfig;
 
         public IConfiguration Configuration { get; private set; }
-        
-        public Startup(IConfiguration configuration)
+        public IConfigurationRoot ConfigurationBuilder { get; set; }
+
+        private static readonly string AngularPath = @"\ClientApp\dist\ClientApp\";
+
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath+ AngularPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            ConfigurationBuilder = builder.Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -30,13 +38,14 @@ namespace TestAngularProj
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/dist/ClientApp";
             });
 
             //HOME
             //var connection = @"Server=DESKTOP-4NUD22C;Database=TriathlonResults;Trusted_Connection=True;ConnectRetryCount=0";
             //WORK 
-            var connection = @"Server=SAU019855\SCOTCOURTSDB;Database=TriathlonResults;Trusted_Connection=True;ConnectRetryCount=0";
+            //var connection = @"Server=SAU019855\SCOTCOURTSDB;Database=TriathlonResults;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = ConfigurationBuilder.GetSection("TriSettings").GetSection("DbConnectionWork").Value;
             services.AddDbContext<TriathlonContext>(options => options.UseSqlServer(connection));
 
             //DI - Add repository
@@ -83,7 +92,7 @@ namespace TestAngularProj
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }
