@@ -13,14 +13,20 @@ import { Format } from '../models/format';
 })
 
 export class TriathloncalculatorComponent implements OnInit{
-
+  
   ngOnInit(){
   }
 
   constructor() {
+  
   }
 
-  public totalTime: number = 0;
+  public totalTime: number = 0.0;
+  public totalSwim: number = 0.0;
+  public totalT1: number = 0.0;
+  public totalBike: number = 0.0;
+  public totalT2: number = 0.0;
+  public totalRun: number = 0.0;
   public totalTimeString: string = "";
   public selectRace = "Select event";
   public swim: number = 0;
@@ -30,10 +36,10 @@ export class TriathloncalculatorComponent implements OnInit{
   public inputT2: string = "";
   public inputRun: string = "";
   public races: Format[] = [
-    { formatId:1, name: "Sprint", swim: 0.75, bike: 20, run: 5 },
-    { formatId:2, name: "Olympic", swim: 1.5, bike: 40, run: 10 },
-    { formatId:3, name: "70.3", swim: 1.9, bike: 90, run: 21.1 },
-    { formatId:4, name: "140.6", swim: 3.8, bike: 180, run: 42.2 }
+    { formatId:1, name: "Sprint", swim: 0.75, bike: 20.0, run: 5.0 },
+    { formatId:2, name: "Olympic", swim: 1.6, bike: 40.0, run: 10.0 },
+    { formatId:3, name: "70.3", swim: 1.8, bike: 90.0, run: 21.1 },
+    { formatId:4, name: "140.6", swim: 3.8, bike: 180.0, run: 42.2 }
   ];
   public selectedRace: Format[];
 
@@ -41,7 +47,7 @@ export class TriathloncalculatorComponent implements OnInit{
     //update the ui
     this.selectRace = event.target.value;
     this.selectedRace = (this.races.filter((item) => item.name == this.selectRace)) as any[];
-    this.swim = this.selectedRace[0].swim;
+    
   }
 
   public timeCounter() {
@@ -50,11 +56,12 @@ export class TriathloncalculatorComponent implements OnInit{
     //var swimtime = $scope.swim;
     //var array = this.inputSwim.split(':')[0];
     //totalTime in seconds.
-    this.totalTime = this.selectedRace[0].swim * 10 * (parseInt(this.inputSwim.split(':')[0]) * 60 + parseInt(this.inputSwim.split(':')[1]));
-    this.totalTime += (parseInt(this.inputT1.split(':')[0]) * 60 + parseInt(this.inputT1.split(':')[1]));
-    this.totalTime += this.selectedRace[0].bike / parseInt(this.inputBike) * 3600;
-    this.totalTime += (parseInt(this.inputT2.split(':')[0]) * 60 + parseInt(this.inputT2.split(':')[1]));
-    this.totalTime += this.selectedRace[0].run * (parseInt(this.inputRun.split(':')[0]) * 60 + parseInt(this.inputRun.split(':')[1]));
+    this.totalSwim = this.selectedRace[0].swim * 10 * (parseInt(this.inputSwim.split(':')[0]) * 60 + parseInt(this.inputSwim.split(':')[1]));
+    this.totalT1 = (parseInt(this.inputT1.split(':')[0]) * 60 + parseInt(this.inputT1.split(':')[1]));
+    this.totalBike = (this.selectedRace[0].bike * 1.00 / parseFloat(this.inputBike) * 3600.00);
+    this.totalT2 = (parseInt(this.inputT2.split(':')[0]) * 60 + parseInt(this.inputT2.split(':')[1]));
+    this.totalRun = (this.selectedRace[0].run * (parseInt(this.inputRun.split(':')[0]) * 60 + parseInt(this.inputRun.split(':')[1])));
+    this.totalTime = this.totalSwim + this.totalT1 + this.totalBike + this.totalT2 + this.totalRun;
     var minutes = this.totalTime / 60;
     var fseconds = Math.floor(this.totalTime % 60);
     var fhours = Math.floor(minutes / 60);
