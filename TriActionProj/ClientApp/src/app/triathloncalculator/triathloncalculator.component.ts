@@ -14,6 +14,7 @@ import { Format } from '../models/format';
 
 export class TriathloncalculatorComponent implements OnInit{
 
+
   ngOnInit(){
   }
 
@@ -21,6 +22,9 @@ export class TriathloncalculatorComponent implements OnInit{
   }
 
   public totalTime: number = 0;
+  public totalTimeSwim: string;
+  public totalTimeBike: string;
+  public totatTimeRun: string;
   public totalTimeString: string = "";
   public selectRace = "Select event";
   public swim: number = 0;
@@ -45,12 +49,8 @@ export class TriathloncalculatorComponent implements OnInit{
   }
 
   public timeCounter() {
-
-    //var swimTime = angular.element('#swim').val()
-    //var swimtime = $scope.swim;
-    //var array = this.inputSwim.split(':')[0];
     //totalTime in seconds.
-    this.totalTime = this.selectedRace[0].swim * 10 * (parseInt(this.inputSwim.split(':')[0]) * 60 + parseInt(this.inputSwim.split(':')[1]));
+    this.totalTime += this.selectedRace[0].swim * 10 * (parseInt(this.inputSwim.split(':')[0]) * 60 + parseInt(this.inputSwim.split(':')[1]));
     this.totalTime += (parseInt(this.inputT1.split(':')[0]) * 60 + parseInt(this.inputT1.split(':')[1]));
     this.totalTime += this.selectedRace[0].bike / parseInt(this.inputBike) * 3600;
     this.totalTime += (parseInt(this.inputT2.split(':')[0]) * 60 + parseInt(this.inputT2.split(':')[1]));
