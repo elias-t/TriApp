@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TriathlonResultsModelStoreContainer" CdmEntityContainer="TriathlonResultsEntities">
+    <EntitySetMapping Name="Athletes">
+      <EntityTypeMapping TypeName="TriathlonResultsModel.Athlete">
+        <MappingFragment StoreEntitySet="Athletes">
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Athlete_id" ColumnName="Athlete_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Formats">
+      <EntityTypeMapping TypeName="TriathlonResultsModel.Format">
+        <MappingFragment StoreEntitySet="Formats">
+          <ScalarProperty Name="Distance_Run" ColumnName="Distance_Run" />
+          <ScalarProperty Name="Distance_Bike" ColumnName="Distance_Bike" />
+          <ScalarProperty Name="Distance_Swim" ColumnName="Distance_Swim" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Format_id" ColumnName="Format_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Races">
+      <EntityTypeMapping TypeName="TriathlonResultsModel.Race">
+        <MappingFragment StoreEntitySet="Races">
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Race_Format_id" ColumnName="Race_Format_id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Race_id" ColumnName="Race_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="TriathlonResultsModel.Result">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="Bib" ColumnName="Bib" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="Time_Total" ColumnName="Time_Total" />
+          <ScalarProperty Name="Time_Run" ColumnName="Time_Run" />
+          <ScalarProperty Name="Time_T2" ColumnName="Time_T2" />
+          <ScalarProperty Name="Time_Bike" ColumnName="Time_Bike" />
+          <ScalarProperty Name="Time_T1" ColumnName="Time_T1" />
+          <ScalarProperty Name="Time_Swim" ColumnName="Time_Swim" />
+          <ScalarProperty Name="Result_Athlete_Id" ColumnName="Result_Athlete_Id" />
+          <ScalarProperty Name="Result_Race_Id" ColumnName="Result_Race_Id" />
+          <ScalarProperty Name="Result_Id" ColumnName="Result_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,60 @@
+<h1>Races</h1>
+
+<h4>List of triathlon races</h4>
+<p>&nbsp;</p>
+<div>
+  <label>Filter by format: </label>
+  <select (change)="filterRaces($event.target.value)">
+    <option value="0">--All--</option>
+    <option *ngFor="let format of formats" value={{format.name}}>
+      {{format.name}}
+    </option>
+  </select>
+</div>
+
+<div>
+  <label>Filter by name: </label>
+  <select (change)="filterRacesByName($event.target.value)">
+    <option value="0">--All--</option>
+    <option *ngFor="let race of (races | uniqueRace)" value={{race}}>
+      {{race}}
+    </option>
+  </select>
+</div>
+
+
+<p *ngIf="!races"><em>Loading...</em></p>
+<div *ngIf="races">
+  <table class='table' *ngIf="races">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Format</th>
+        <th>Year</th>
+        <th>Results</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>Add athlete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let race of races">
+        <td>{{ race.name }}</td>
+        <td>{{ race.raceFormatName }}</td>
+        <td>{{ race.year }}</td>
+        <td><a [class.disabled]="!hasResults(race.resultsCount)" [routerLink]="['../viewresults', race.raceId]">View results</a></td>
+        <td><button class="btn btn-primary" (click)="updateRace(race)">Update</button></td>
+        <td><button *ngIf="!hasResults(race.resultsCount)" class="btn btn-primary" (click)="deleteRace(race)">Delete</button></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addAthlete(race)">Add athlete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="addRace()">
+      Add race
+    </button>
+  </p>
+</div>

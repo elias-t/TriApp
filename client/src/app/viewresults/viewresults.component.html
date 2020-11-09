@@ -1,0 +1,51 @@
+<h1>Results</h1>
+
+<p>
+  Race results for triathlon race: <b>{{raceResults[0].resultRace.name}}</b> ({{raceResults[0].resultRace.raceFormatName}} distance,
+  Swim: {{raceResults[0].resultRace.distanceSwim}}, Bike: {{raceResults[0].resultRace.distanceBike}}, Run: {{raceResults[0].resultRace.distanceRun}}) [{{raceResults[0].resultRace.year}}]
+</p>
+
+
+<p *ngIf="!raceResults"><em>Loading...</em></p>
+<div *ngIf="raceResults">
+  <table class='table' *ngIf="raceResults">
+    <thead>
+      <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Age</th>
+        <th>City</th>
+        <th>Team</th>
+        <th>Bib</th>
+        <th>Swim</th>
+        <th>T1</th>
+        <th>Bike</th>
+        <th>T2</th>
+        <th>Run</th>
+        <th>Total time</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let raceresult of raceResults">
+        <td>{{ raceresult.resultAthlete.firstName }}</td>
+        <td>{{ raceresult.resultAthlete.lastName }}</td>
+        <td>{{todayYear - (raceresult.resultAthlete.dob | date:'yyyy')}}</td>
+        <td>{{ raceresult.city }}</td>
+        <td>{{ raceresult.team }}</td>
+        <td>{{ raceresult.bib }}</td>
+        <td>{{ raceresult.timeSwimStr }}</td>
+        <td>{{ raceresult.timeT1Str }}</td>
+        <td>{{ raceresult.timeBikeStr }}</td>
+        <td>{{ raceresult.timeT2Str }}</td>
+        <td>{{ raceresult.timeRunStr }}</td>
+        <td>{{ raceresult.timeTotalStr }}</td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="updateResult(raceresult)">Update</button></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="deleteResult(raceresult)">Delete</button></td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="details(raceresult)">Details</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

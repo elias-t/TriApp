@@ -1,0 +1,65 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">Race</h4>
+</div>
+
+<div>
+  <ngb-alert type="danger" *ngIf="raceExists" [dismissible]="true">
+    <span style="color: darkred"><strong>*</strong></span> This race event already exists for this year.
+  </ngb-alert>
+</div>
+
+<div class="modal-body">
+  <ng-form #raceModal="ngForm">
+    <div class="form-group row" *ngIf="!isEdit">
+      <label for="raceName" class="col-md-4 col-form-label" style="text-align: right">Race name:</label>
+      <div class="input-group col-md-8">
+        <select (change)="checkIfNewRace($event.target.value)" [(ngModel)]="modelRaceName" name="newRace">
+          <option value="Add new race" selected>Add new race event</option>
+          <option *ngFor="let race of (races | uniqueRace)" name="raceId" [ngValue]="race">
+          <!--<option *ngFor="let race of races" name="raceId" [ngValue]="race.raceId">-->
+            {{race}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row" *ngIf="isNewRace || isEdit">
+      <label for="raceName" class="col-md-4 col-form-label" style="text-align: right">Race name:</label>
+      <div class="input-group col-md-8">
+        <input id="raceName" name="raceName" class="form-control" placeholder="Race name" [(ngModel)]="selectedRace.name" required>
+      </div>
+    </div>
+
+    <div class="form-group row" *ngIf="isNewRace || isEdit">
+      <label for="raceFormat" class="col-md-4 col-form-label" style="text-align: right">Race format:</label>
+      <div class="input-group col-md-8">
+        <select [(ngModel)]="selectedRace.raceFormatId" name="raceFormat">
+          <option *ngFor="let format of formats" name="formatId" [ngValue]="format.formatId">
+            {{format.name}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="raceFormat" class="col-md-4 col-form-label" style="text-align: right">Race year:</label>
+      <div class="input-group col-md-8">
+        <select [(ngModel)]="selectedRace.year" name="raceYear">
+          <option [ngValue]="currentYear-3">{{currentYear-3}}</option>
+          <option [ngValue]="currentYear-2">{{currentYear-2}}</option>
+          <option [ngValue]="currentYear-1">{{currentYear-1}}</option>
+          <option [ngValue]="currentYear">{{currentYear}}</option>
+          <option [ngValue]="currentYear+1">{{currentYear+1}}</option>
+          <option [ngValue]="currentYear+2">{{currentYear+2}}</option>
+          <option [ngValue]="currentYear+3">{{currentYear+3}}</option>
+        </select>
+      </div>
+    </div>
+
+  </ng-form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel Click')">Cancel</button>
+  <button type="button" class="btn btn-outline-dark" name="Save" (click)="btnSave_Clicked()">Save</button>
+</div>

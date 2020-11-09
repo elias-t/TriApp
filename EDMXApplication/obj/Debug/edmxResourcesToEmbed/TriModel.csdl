@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TriathlonResultsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TriathlonResultsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Athletes" EntityType="TriathlonResultsModel.Athlete" />
+    <EntitySet Name="Formats" EntityType="TriathlonResultsModel.Format" />
+    <EntitySet Name="Races" EntityType="TriathlonResultsModel.Race" />
+    <EntitySet Name="Results" EntityType="TriathlonResultsModel.Result" />
+    <AssociationSet Name="FK_Results_Athletes" Association="TriathlonResultsModel.FK_Results_Athletes">
+      <End Role="Athlete" EntitySet="Athletes" />
+      <End Role="Result" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Races_Formats" Association="TriathlonResultsModel.FK_Races_Formats">
+      <End Role="Format" EntitySet="Formats" />
+      <End Role="Race" EntitySet="Races" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Races" Association="TriathlonResultsModel.FK_Results_Races">
+      <End Role="Race" EntitySet="Races" />
+      <End Role="Result" EntitySet="Results" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Athlete">
+    <Key>
+      <PropertyRef Name="Athlete_id" />
+    </Key>
+    <Property Name="Athlete_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Results" Relationship="TriathlonResultsModel.FK_Results_Athletes" FromRole="Athlete" ToRole="Result" />
+  </EntityType>
+  <EntityType Name="Format">
+    <Key>
+      <PropertyRef Name="Format_id" />
+    </Key>
+    <Property Name="Format_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Races" Relationship="TriathlonResultsModel.FK_Races_Formats" FromRole="Format" ToRole="Race" />
+    <Property Name="Distance_Swim" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="Distance_Bike" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <Property Name="Distance_Run" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="Race">
+    <Key>
+      <PropertyRef Name="Race_id" />
+    </Key>
+    <Property Name="Race_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Race_Format_id" Type="Int32" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Format" Relationship="TriathlonResultsModel.FK_Races_Formats" FromRole="Race" ToRole="Format" />
+    <NavigationProperty Name="Results" Relationship="TriathlonResultsModel.FK_Results_Races" FromRole="Race" ToRole="Result" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="Result_Id" />
+    </Key>
+    <Property Name="Result_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Result_Race_Id" Type="Int32" Nullable="false" />
+    <Property Name="Result_Athlete_Id" Type="Int32" Nullable="false" />
+    <Property Name="Time_Swim" Type="Time" Precision="7" />
+    <Property Name="Time_T1" Type="Time" Precision="7" />
+    <Property Name="Time_Bike" Type="Time" Precision="7" />
+    <Property Name="Time_T2" Type="Time" Precision="7" />
+    <Property Name="Time_Run" Type="Time" Precision="7" />
+    <Property Name="Time_Total" Type="Time" Precision="7" />
+    <Property Name="Team" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Bib" Type="Int32" />
+    <NavigationProperty Name="Athlete" Relationship="TriathlonResultsModel.FK_Results_Athletes" FromRole="Result" ToRole="Athlete" />
+    <NavigationProperty Name="Race" Relationship="TriathlonResultsModel.FK_Results_Races" FromRole="Result" ToRole="Race" />
+  </EntityType>
+  <Association Name="FK_Results_Athletes">
+    <End Type="TriathlonResultsModel.Athlete" Role="Athlete" Multiplicity="1" />
+    <End Type="TriathlonResultsModel.Result" Role="Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Athlete">
+        <PropertyRef Name="Athlete_id" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="Result_Athlete_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Races_Formats">
+    <End Type="TriathlonResultsModel.Format" Role="Format" Multiplicity="1" />
+    <End Type="TriathlonResultsModel.Race" Role="Race" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Format">
+        <PropertyRef Name="Format_id" />
+      </Principal>
+      <Dependent Role="Race">
+        <PropertyRef Name="Race_Format_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Races">
+    <End Type="TriathlonResultsModel.Race" Role="Race" Multiplicity="1" />
+    <End Type="TriathlonResultsModel.Result" Role="Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Race">
+        <PropertyRef Name="Race_id" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="Result_Race_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

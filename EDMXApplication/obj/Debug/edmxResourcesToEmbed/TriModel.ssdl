@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TriathlonResultsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Athletes">
+    <Key>
+      <PropertyRef Name="Athlete_id" />
+    </Key>
+    <Property Name="Athlete_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DOB" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Formats">
+    <Key>
+      <PropertyRef Name="Format_id" />
+    </Key>
+    <Property Name="Format_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Distance_Swim" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Distance_Bike" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Distance_Run" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Races">
+    <Key>
+      <PropertyRef Name="Race_id" />
+    </Key>
+    <Property Name="Race_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Race_Format_id" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Results">
+    <Key>
+      <PropertyRef Name="Result_Id" />
+    </Key>
+    <Property Name="Result_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Result_Race_Id" Type="int" Nullable="false" />
+    <Property Name="Result_Athlete_Id" Type="int" Nullable="false" />
+    <Property Name="Time_Swim" Type="time" Precision="7" />
+    <Property Name="Time_T1" Type="time" Precision="7" />
+    <Property Name="Time_Bike" Type="time" Precision="7" />
+    <Property Name="Time_T2" Type="time" Precision="7" />
+    <Property Name="Time_Run" Type="time" Precision="7" />
+    <Property Name="Time_Total" Type="time" Precision="7" />
+    <Property Name="Team" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Bib" Type="int" />
+  </EntityType>
+  <Association Name="FK_Races_Formats">
+    <End Role="Formats" Type="Self.Formats" Multiplicity="1" />
+    <End Role="Races" Type="Self.Races" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Formats">
+        <PropertyRef Name="Format_id" />
+      </Principal>
+      <Dependent Role="Races">
+        <PropertyRef Name="Race_Format_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Athletes">
+    <End Role="Athletes" Type="Self.Athletes" Multiplicity="1" />
+    <End Role="Results" Type="Self.Results" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Athletes">
+        <PropertyRef Name="Athlete_id" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="Result_Athlete_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Races">
+    <End Role="Races" Type="Self.Races" Multiplicity="1" />
+    <End Role="Results" Type="Self.Results" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Races">
+        <PropertyRef Name="Race_id" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="Result_Race_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TriathlonResultsModelStoreContainer">
+    <EntitySet Name="Athletes" EntityType="Self.Athletes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Formats" EntityType="Self.Formats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Races" EntityType="Self.Races" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Races_Formats" Association="Self.FK_Races_Formats">
+      <End Role="Formats" EntitySet="Formats" />
+      <End Role="Races" EntitySet="Races" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Athletes" Association="Self.FK_Results_Athletes">
+      <End Role="Athletes" EntitySet="Athletes" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Races" Association="Self.FK_Results_Races">
+      <End Role="Races" EntitySet="Races" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
