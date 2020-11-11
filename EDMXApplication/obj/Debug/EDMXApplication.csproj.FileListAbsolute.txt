@@ -25,12 +25,8 @@ C:\Work\Projects\TriActionProj\EDMXApplication\obj\Debug\EDMXApplication.pdb
 C:\Work\Projects\TriAction\EDMXApplication\bin\Debug\EDMXApplication.exe.config
 C:\Work\Projects\TriAction\EDMXApplication\bin\Debug\EDMXApplication.exe
 C:\Work\Projects\TriAction\EDMXApplication\bin\Debug\EDMXApplication.pdb
-C:\Work\Projects\TriAction\EDMXApplication\bin\Debug\EntityFramework.dll
-C:\Work\Projects\TriAction\EDMXApplication\bin\Debug\EntityFramework.SqlServer.dll
-C:\Work\Projects\TriAction\EDMXApplication\bin\Debug\EntityFramework.xml
-C:\Work\Projects\TriAction\EDMXApplication\bin\Debug\EntityFramework.SqlServer.xml
-C:\Work\Projects\TriAction\EDMXApplication\obj\Debug\EDMXApplication.csprojAssemblyReference.cache
 C:\Work\Projects\TriAction\EDMXApplication\obj\Debug\EDMXApplication.csproj.CoreCompileInputs.cache
 C:\Work\Projects\TriAction\EDMXApplication\obj\Debug\EDMXApplication.csproj.CopyComplete
 C:\Work\Projects\TriAction\EDMXApplication\obj\Debug\EDMXApplication.exe
 C:\Work\Projects\TriAction\EDMXApplication\obj\Debug\EDMXApplication.pdb
+C:\Work\Projects\TriAction\EDMXApplication\obj\Debug\EDMXApplication.csprojAssemblyReference.cache

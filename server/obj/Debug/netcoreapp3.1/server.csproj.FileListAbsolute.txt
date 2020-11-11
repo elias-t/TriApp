@@ -40,7 +40,6 @@ C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\EDMXApplication.exe
 C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\EntityFramework.dll
 C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\EDMXApplication.pdb
 C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\EDMXApplication.exe.config
-C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\EntityFramework.xml
 C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Work\Projects\TriAction\server\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll

@@ -8,23 +8,7 @@
       "restore": {
         "projectUniqueName": "C:\\Work\\Projects\\TriAction\\EDMXApplication\\EDMXApplication.csproj",
         "projectName": "EDMXApplication",
-        "projectPath": "C:\\Work\\Projects\\TriAction\\EDMXApplication\\EDMXApplication.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "projectStyle": "PackagesConfig",
-        "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net461": {
-            "projectReferences": {}
-          }
-        },
-        "packagesConfigPath": "C:\\Work\\Projects\\TriAction\\EDMXApplication\\packages.config"
+        "projectPath": "C:\\Work\\Projects\\TriAction\\EDMXApplication\\EDMXApplication.csproj"
       },
       "frameworks": {
         "net461": {}

@@ -251,12 +251,12 @@ namespace server.Models
                 try
                 {
                     //edit first name, last name on separate query
-                    currentResult.Time_Swim = resultDTO.TimeSwim;
-                    currentResult.Time_T1 = resultDTO.TimeT1;
-                    currentResult.Time_Bike = resultDTO.TimeBike;
-                    currentResult.Time_T2 = resultDTO.TimeT2;
-                    currentResult.Time_Run = resultDTO.TimeRun;
-                    currentResult.Time_Total = resultDTO.TimeTotal;
+                    currentResult.Time_Swim = TimeSpan.Parse(resultDTO.TimeSwimStr);
+                    currentResult.Time_T1 = TimeSpan.Parse(resultDTO.TimeT1Str);
+                    currentResult.Time_Bike = TimeSpan.Parse(resultDTO.TimeBikeStr);
+                    currentResult.Time_T2 = TimeSpan.Parse(resultDTO.TimeT2Str);
+                    currentResult.Time_Run = TimeSpan.Parse(resultDTO.TimeRunStr);
+                    currentResult.Time_Total = TimeSpan.Parse(resultDTO.TimeTotalStr);
                     int result = _context.SaveChanges();
                     transaction.Commit();
                     return result;

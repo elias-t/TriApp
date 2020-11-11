@@ -27,13 +27,14 @@
     <div class="form-group row" *ngIf="isNewAthlete">
       <label for="lastName" class="col-md-4 col-form-label" style="text-align: right">Lastname:</label>
       <div class="input-group col-md-8">
-        <input id="lastName" name="lastName" class="form-control" placeholder="First name" [(ngModel)]="selectedAthlete.lastName" required>
+        <input id="lastName" name="lastName" class="form-control" placeholder="Last name" [(ngModel)]="selectedAthlete.lastName" required>
       </div>
     </div>
 
     <div class="form-group row" *ngIf="isNewAthlete">
       <label for="dob" class="col-md-4 col-form-label" style="text-align: right">Date of birth:</label>
       <div class="input-group col-md-8">
+        <!-- <input [minDate]="{year: 1930, month: 1, day: 1}" [(ngModel)]="athleteDOB" name="dateofbirth" type="text" ngbDatepicker #e="ngbDatepicker" (click)="e.open()" placeholder="Date picker fixed" container="body"/> -->
         <ngb-datepicker #dp [minDate]="{year: 1930, month: 1, day: 1}" [(ngModel)]="athleteDOB" name="dateofbirth" (navigate)="date = $event.next"></ngb-datepicker>
       </div>
     </div>
@@ -65,5 +66,5 @@
 
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cancel Click')">Cancel</button>
-  <button type="button" class="btn btn-outline-dark" name="Save" (click)="btnSave_Clicked()">Save</button>
+  <button type="button" class="btn btn-outline-dark" name="Save" [disabled]="!team || !city || !bib" (click)="btnSave_Clicked()">Save</button>
 </div>

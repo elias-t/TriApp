@@ -71,12 +71,12 @@ export class ViewresultsComponent implements OnInit {
     modalConfirmation.componentInstance.modalTitle = 'Result details';
     modalConfirmation.componentInstance.isDelete = false;
     modalConfirmation.componentInstance.detailsMessage =
-      'Swim:  ' + athleteResult.timeSwim + " - pace: " + this.calc.calculatePace("swim", athleteResult.timeSwim, this.raceResults[0].resultRace.distanceSwim ) + "/100m" + "\n" +
-      'T1:    ' + athleteResult.timeT1 + "\n" + 
-    'Bike:  ' + athleteResult.timeBike + " - pace: " + this.calc.calculatePace("bike", athleteResult.timeBike, this.raceResults[0].resultRace.distanceBike) + "km/h" + "\n" +
-      'T2:    ' + athleteResult.timeT2 + "\n" +
-    'Run:   ' + athleteResult.timeRun + " - pace: " + this.calc.calculatePace("run", athleteResult.timeRun, this.raceResults[0].resultRace.distanceRun) + "min/km " + "\n" +
-      'Total: ' + athleteResult.timeTotal + "\n"; +
+      'Swim:  ' + athleteResult.timeSwimStr + " - pace: " + this.calc.calculatePace("swim", athleteResult.timeSwimStr, this.raceResults[0].resultRace.distanceSwim ) + "/100m" + "\n" +
+      'T1:    ' + athleteResult.timeT1Str + "\n" + 
+    'Bike:  ' + athleteResult.timeBikeStr + " - pace: " + this.calc.calculatePace("bike", athleteResult.timeBikeStr, this.raceResults[0].resultRace.distanceBike) + "km/h" + "\n" +
+      'T2:    ' + athleteResult.timeT2Str + "\n" +
+    'Run:   ' + athleteResult.timeRunStr + " - pace: " + this.calc.calculatePace("run", athleteResult.timeRunStr, this.raceResults[0].resultRace.distanceRun) + "min/km " + "\n" +
+      'Total: ' + athleteResult.timeTotalStr + "\n"; +
     modalConfirmation.result.then((result) => {
       this.api.deleteResult(+athleteResult.resultId).subscribe(() => {
         window.location.reload();
